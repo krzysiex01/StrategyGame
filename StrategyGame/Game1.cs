@@ -11,14 +11,16 @@ namespace StrategyGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private Player player1;
-        private Player player2;
-        public int Size { get; set; }
+        public Player player1;
+        public Player player2;
+        private UserInterface userInterface;
+        public TexturePack texturePack;
+        public int size { get; set; }
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            Size = 1000;
+            size = 1000;
             Content.RootDirectory = "Content";
         }
 
@@ -30,8 +32,10 @@ namespace StrategyGame
         /// </summary>
         protected override void Initialize()
         {
-            player1 = new Player(Size);
-            player2 = new Player(Size);
+            player1 = new Player(size);
+            player2 = new Player(size);
+            texturePack = new TexturePack(this);
+            userInterface = new UserInterface(player1,player2,texturePack);
             //Add new forces here - temporary
 
             base.Initialize();
@@ -77,6 +81,7 @@ namespace StrategyGame
             player2.Update(player1);
             player1.DestroyNoHp();
             player2.DestroyNoHp();
+            userInterface.Update();
 
             base.Update(gameTime);
         }
@@ -89,7 +94,7 @@ namespace StrategyGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             // TODO: Add your drawing code here - only simple draw methods ;)
-
+            userInterface.Draw(spriteBatch);
             base.Draw(gameTime);
         }
     }
