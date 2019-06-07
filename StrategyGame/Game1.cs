@@ -32,9 +32,6 @@ namespace StrategyGame
             player2 = new Player();
             //Add new forces here - temporary
 
-            //
-
-
             base.Initialize();
         }
 
@@ -48,6 +45,8 @@ namespace StrategyGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // TODO: use this.Content to load your game content here
             
+
+            //
         }
 
         /// <summary>
