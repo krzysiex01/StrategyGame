@@ -30,13 +30,22 @@ namespace StrategyGame
             }
         }
 
-        public void Update()
+        public void Update(Player opponent)
         {
             foreach (Force force in ListOfForces)
             {
                 force.Move();
             }
-            //TODOD: put the fight logic here
+
+            foreach (Force force in ListOfForces)
+            {
+                force.Atack(opponent.ListOfForces[0]);
+            }
+        }
+
+        public void Destroy()
+        {
+            //TODO destroy no HP
         }
     }
 }
