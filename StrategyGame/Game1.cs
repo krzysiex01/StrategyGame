@@ -15,12 +15,12 @@ namespace StrategyGame
         public Player player2;
         private UserInterface userInterface;
         public TexturePack texturePack;
-        public int size { get; set; }
+        public int Size { get; set; }
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            size = 1000;
+            Size = 1000;
             Content.RootDirectory = "Content";
         }
 
@@ -32,8 +32,8 @@ namespace StrategyGame
         /// </summary>
         protected override void Initialize()
         {
-            player1 = new Player(size);
-            player2 = new Player(size);
+            player1 = new Player(Size);
+            player2 = new Player(Size);
             texturePack = new TexturePack(this);
             userInterface = new UserInterface(player1,player2,texturePack);
             //Add new forces here - temporary
