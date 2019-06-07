@@ -53,7 +53,7 @@ namespace StrategyGame
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(Texture, new Vector2((int)PosX, 500), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.FlipHorizontally, 1);
+            spriteBatch.Draw(Texture, new Vector2((int)PosX, 300), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.FlipHorizontally, 1);
             spriteBatch.End();
         }
     }

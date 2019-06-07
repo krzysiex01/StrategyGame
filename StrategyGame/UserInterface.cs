@@ -17,40 +17,42 @@ namespace StrategyGame
         Player Player1 { get; set; }
         Player Player2 { get; set; }
         TexturePack TexturePack { get; set; }
+        KeyboardState PrevState { get; set; }
 
-        public UserInterface(Player player1, Player player2, TexturePack texturePack )
+        public UserInterface(Player player1, Player player2, TexturePack texturePack)
         {
             FocusID = 0;
             NumberOfButtons = 2;
             TexturePack = texturePack;
             Player1 = player1;
             Player2 = player2;
+            PrevState = Keyboard.GetState();
         }
 
         public void Update()
         {
             KeyboardState state = Keyboard.GetState();
 
-            if (state.IsKeyDown(Keys.Right))
+            if (state.IsKeyDown(Keys.Right) & !PrevState.IsKeyDown(Keys.Right))
             {
                 FocusID += 1;
 
             }
-            if (state.IsKeyDown(Keys.Left))
+            if (state.IsKeyDown(Keys.Left) & !PrevState.IsKeyDown(Keys.Left))
             {
                 FocusID -= 1;
             }
 
             if (FocusID < 0)
             {
-                FocusID = NumberOfButtons;
+                FocusID = NumberOfButtons-1;
             }
             else if (FocusID >= NumberOfButtons)
             {
                 FocusID = FocusID = 0;
             }
 
-            if (state.IsKeyDown(Keys.Enter))
+            if (state.IsKeyDown(Keys.Enter) & !PrevState.IsKeyDown(Keys.Enter))
             {
                 switch (FocusID)
                 {
@@ -67,9 +69,8 @@ namespace StrategyGame
                     default:
                         break;
                 }
-                
-                
             }
+            PrevState = state;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -82,7 +83,7 @@ namespace StrategyGame
                         spriteBatch.Draw(TexturePack.cannonForce, new Vector2(0, 0), new Rectangle(0, 0, TexturePack.cannonForce.Width, TexturePack.cannonForce.Height), Color.Blue, 0, new Vector2(0, 0), 0.2f, SpriteEffects.FlipHorizontally, 1);
                         spriteBatch.Draw(TexturePack.cannonForce, new Vector2(600, 0), new Rectangle(0, 0, TexturePack.cannonForce.Width, TexturePack.cannonForce.Height), Color.Red, 0, new Vector2(0, 0), 0.2f, SpriteEffects.FlipHorizontally, 1);
 
-                        
+
                         break;
                     }
                 case 1:
@@ -95,7 +96,7 @@ namespace StrategyGame
                 default:
                     break;
             }
-            
+
             spriteBatch.End();
         }
     }

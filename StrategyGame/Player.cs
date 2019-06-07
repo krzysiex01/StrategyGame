@@ -41,7 +41,7 @@ namespace StrategyGame
 
             foreach (Force force in ListOfForces)
             {
-                if(opponent.ListOfForces.Count>0)
+                if(opponent.ListOfForces.Count > 0)
                 {
                     if (force.PosX + opponent.ListOfForces[0].PosX + force.Range * 40.0 >= (double)BoardSize)
                     {

@@ -99,6 +99,7 @@ namespace StrategyGame
             {
                 force.Draw(spriteBatch);
             }
+            userInterface.Draw(spriteBatch);
             base.Draw(gameTime);
         }
     }
