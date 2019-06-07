@@ -7,13 +7,15 @@ namespace StrategyGame
     {
         public List<Force> ListOfForces { get; set; }
         public int Cash { get; set; }
+        private int BoardSize { get; set; }
         public int[] Upgrades { get; set; }
 
-        public Player()
+        public Player(int size)
         {
             ListOfForces = new List<Force>();
             Upgrades = new int[Enum.GetNames(typeof(ForcesType)).Length];
             Cash = 1000000;
+            BoardSize = size;
         }
 
         public bool AddForces(Force force)
@@ -30,13 +32,25 @@ namespace StrategyGame
             }
         }
 
-        public void Update()
+        public void Update(Player opponent)
         {
             foreach (Force force in ListOfForces)
             {
                 force.Move();
             }
-            //TODOD: put the fight logic here
+
+            foreach (Force force in ListOfForces)
+            {
+                if(force.PosX+ opponent.ListOfForces[0].PosX+force.Range*40.0>=(double)BoardSize)
+                {
+                    force.Atack(opponent.ListOfForces[0]);
+                }
+            }
+        }
+
+        public void DestroyNoHp()
+        {
+            this.ListOfForces.RemoveAll(s => s.Hp <= 0); //TODO optimize
         }
     }
 }
