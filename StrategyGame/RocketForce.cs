@@ -2,7 +2,7 @@
 {
     public class RocketForce : Force
     {
-        public RocketForce()
+        public RocketForce(TexturePack texturePack)
         {
             Id = ForcesType.Rakiety;
             Hp = 120;
@@ -12,6 +12,7 @@
             AtackPoints = 35;
             Cost = 180;
             Accuracy = 0.5;
+            Texture = texturePack.rocketForce;
         }
 
         public override void Atack(Force enemyForce)

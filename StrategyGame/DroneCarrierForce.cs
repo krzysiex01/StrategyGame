@@ -6,7 +6,7 @@ namespace StrategyGame
     {
         List<DroneForce> drones { get; set; }
 
-        public DroneCarrierForce()
+        public DroneCarrierForce(TexturePack texturePack)
         {
             Id = ForcesType.BazaDronow;
             Hp = 150;
@@ -18,6 +18,7 @@ namespace StrategyGame
             Accuracy = 0.99;
             Ammo = 0;
             AmmoMax = 0;
+            Texture = texturePack.droneCarrierForce;
             drones = new List<DroneForce>();
 
             for (int i = 0; i < 5; i++)
