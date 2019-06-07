@@ -1,8 +1,8 @@
 ﻿namespace StrategyGame
 {
-    public class ExpolsiveForce : Force
+    public class ExplosiveForce : Force
     {
-        public ExpolsiveForce()
+        public ExplosiveForce(TexturePack texturePack)
         {
             Id = ForcesType.Wybuchowy;
             Hp = 25;
@@ -12,6 +12,7 @@
             AtackPoints = 100;
             Cost = 100;
             Accuracy = 1.0;
+            Texture = texturePack.explosiveForce;
         }
 
         public override void Atack(Force enemyForce)

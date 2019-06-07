@@ -45,7 +45,7 @@
     <Compile Include="CannonForce.cs" />
     <Compile Include="DroneCarrierForce.cs" />
     <Compile Include="DroneForce.cs" />
-    <Compile Include="ExpolsiveForce.cs" />
+    <Compile Include="ExplosiveForce.cs" />
     <Compile Include="Force.cs" />
     <Compile Include="ForcesType.cs" />
     <Compile Include="Game1.cs" />

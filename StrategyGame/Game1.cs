@@ -52,6 +52,8 @@ namespace StrategyGame
             texturePack = new TexturePack(this);
 
             player1.AddForces(new CannonForce(texturePack));
+            player1.AddForces(new ExplosiveForce(texturePack));
+            player1.AddForces(new RifleForce(texturePack));
 
             // TODO: use this.Content to load your game content here
         }

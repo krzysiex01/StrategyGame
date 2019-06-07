@@ -2,7 +2,7 @@
 {
     public class RifleForce : Force
     {
-        public RifleForce()
+        public RifleForce(TexturePack texturePack)
         {
             Id = ForcesType.Karabin;
             Hp = 80;
@@ -14,6 +14,7 @@
             Accuracy = 0.9;
             Ammo = 200;
             AmmoMax = 200;
+            Texture = texturePack.rifleForce;
         }
 
     }
