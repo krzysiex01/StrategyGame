@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace StrategyGame
 {
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
@@ -11,13 +12,19 @@ namespace StrategyGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D background;
         private Player player1;
         private Player player2;
+        TexturePack texturePack;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = (int)((double)GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width * 0.8);
+            graphics.PreferredBackBufferHeight = (int)((double)GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * 0.8);
+            graphics.ApplyChanges();
             Content.RootDirectory = "Content";
+
         }
 
         /// <summary>
@@ -30,9 +37,6 @@ namespace StrategyGame
         {
             player1 = new Player();
             player2 = new Player();
-            //Add new forces here - temporary
-
-
             base.Initialize();
         }
 
@@ -44,8 +48,12 @@ namespace StrategyGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            background = this.Content.Load<Texture2D>("desert");
+            texturePack = new TexturePack(this);
+
+            player1.AddForces(new CannonForce(texturePack));
+
             // TODO: use this.Content to load your game content here
-            
         }
 
         /// <summary>
@@ -54,9 +62,8 @@ namespace StrategyGame
         /// </summary>
         protected override void UnloadContent()
         {
-            Content.Unload();
             // TODO: Unload any non ContentManager content here
-
+            Content.Unload();
         }
 
         /// <summary>
@@ -68,13 +75,11 @@ namespace StrategyGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            //TODO: Add Interface class update
-
-
-            //Player update logic
-            player1.Update();
-            player2.Update();
-
+            // TODO: Add your update logic here
+            foreach (var force in player1.ListOfForces)
+            {
+                force.Move();
+            }
             base.Update(gameTime);
         }
 
@@ -85,8 +90,15 @@ namespace StrategyGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            // TODO: Add your drawing code here - only simple draw methods ;)
 
+            spriteBatch.Begin();
+            spriteBatch.Draw(background, new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight), Color.White);
+            spriteBatch.End();
+            // TODO: Add your drawing code here
+            foreach (var force in player1.ListOfForces)
+            {
+                force.Draw(spriteBatch);
+            }
             base.Draw(gameTime);
         }
     }

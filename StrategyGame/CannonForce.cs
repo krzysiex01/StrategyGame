@@ -2,7 +2,7 @@
 {
     public class CannonForce : Force
     {
-        public CannonForce()
+        public CannonForce(TexturePack texturePack)
         {
             Id = ForcesType.Dziala;
             Hp = 200;
@@ -14,6 +14,7 @@
             Accuracy = 0.5;
             Ammo = 500;
             AmmoMax = 500;
+            Texture = texturePack.cannonForce;
         }
     }
 }
