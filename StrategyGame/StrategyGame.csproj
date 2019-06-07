@@ -56,6 +56,7 @@
     <Compile Include="RifleForce.cs" />
     <Compile Include="RocketForce.cs" />
     <Compile Include="TexturePack.cs" />
+    <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

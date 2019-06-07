@@ -32,6 +32,8 @@ namespace StrategyGame
             player2 = new Player();
             //Add new forces here - temporary
 
+            //
+
 
             base.Initialize();
         }
