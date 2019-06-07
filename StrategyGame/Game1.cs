@@ -20,6 +20,8 @@ namespace StrategyGame
             Content.RootDirectory = "Content";
         }
 
+        //komentarz od czapy
+
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
