@@ -43,9 +43,9 @@ namespace StrategyGame
             }
         }
 
-        public void Destroy()
+        public void DestroyNoHp()
         {
-            //TODO destroy no HP
+            this.ListOfForces.RemoveAll(s => s.Hp <= 0); //TODO optimize
         }
     }
 }
