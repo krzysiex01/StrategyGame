@@ -11,16 +11,16 @@ namespace StrategyGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private Player player1;
-        private Player player2;
+        public Player player1;
+        public Player player2;
+        private UserInterface userInterface;
+        public TexturePack texturePack;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-
-        //komentarz od czapy
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -32,6 +32,8 @@ namespace StrategyGame
         {
             player1 = new Player();
             player2 = new Player();
+            texturePack = new TexturePack(this);
+            userInterface = new UserInterface(player1,player2,texturePack);
             //Add new forces here - temporary
 
             base.Initialize();
@@ -75,6 +77,7 @@ namespace StrategyGame
             //Player update logic
             player1.Update();
             player2.Update();
+            userInterface.Update();
 
             base.Update(gameTime);
         }
@@ -87,7 +90,7 @@ namespace StrategyGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             // TODO: Add your drawing code here - only simple draw methods ;)
-
+            userInterface.Draw(spriteBatch);
             base.Draw(gameTime);
         }
     }
