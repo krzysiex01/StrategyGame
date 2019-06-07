@@ -50,10 +50,24 @@ namespace StrategyGame
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int playerID, int boardSize)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(Texture, new Vector2((int)PosX, 300), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.FlipHorizontally, 1);
+            switch (playerID)
+            {
+                case 1:
+                    {
+                        spriteBatch.Draw(Texture, new Vector2((int)PosX-(int)(0.1*(double)Texture.Width), 300), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.FlipHorizontally, 1);
+                        break;
+                    }
+                case 2:
+                    {
+                        spriteBatch.Draw(Texture, new Vector2(boardSize - (int)PosX, 300), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.None, 1);
+                        break;
+                    }
+                default:
+                    break;
+            }
             spriteBatch.End();
         }
     }

@@ -32,8 +32,8 @@ namespace StrategyGame
         /// </summary>
         protected override void Initialize()
         {
-            player1 = new Player(Size);
-            player2 = new Player(Size);
+            player1 = new Player(Size,1);
+            player2 = new Player(Size,2);
             texturePack = new TexturePack(this);
             userInterface = new UserInterface(player1,player2,texturePack);
             //Add new forces here - temporary
@@ -93,12 +93,10 @@ namespace StrategyGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            player1.Draw(spriteBatch);
+            player2.Draw(spriteBatch);
             // TODO: Add your drawing code here
-            foreach (var force in player1.ListOfForces)
-            {
-                force.Draw(spriteBatch);
-            }
+            
             userInterface.Draw(spriteBatch);
             base.Draw(gameTime);
         }

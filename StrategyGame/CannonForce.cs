@@ -9,7 +9,7 @@
             Range = 4; //jeszcze dalej
             Speed = 15;
             Armor = 4;
-            AtackPoints = 90;
+            AtackPoints = 1;
             Cost = 240;
             Accuracy = 0.5;
             Ammo = 500;

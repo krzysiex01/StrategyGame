@@ -63,7 +63,7 @@ namespace StrategyGame
                         }
                     case 1:
                         {
-                            Player2.AddForces(new RifleForce(TexturePack));
+                            Player2.AddForces(new CannonForce(TexturePack));
                             break;
                         }
                     default:

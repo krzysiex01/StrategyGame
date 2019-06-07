@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace StrategyGame
 {
@@ -10,12 +13,15 @@ namespace StrategyGame
         public int BoardSize { get; set; }
         public int[] Upgrades { get; set; }
 
-        public Player(int size)
+        public int PlayerID { get; set; }
+
+        public Player(int size,int id)
         {
             ListOfForces = new List<Force>();
             Upgrades = new int[Enum.GetNames(typeof(ForcesType)).Length];
             Cash = 1000000;
             BoardSize = size;
+            PlayerID = id;
         }
 
         public bool AddForces(Force force)
@@ -41,13 +47,25 @@ namespace StrategyGame
 
             foreach (Force force in ListOfForces)
             {
+                force.Stop = false;
                 if(opponent.ListOfForces.Count > 0)
                 {
-                    if (force.PosX + opponent.ListOfForces[0].PosX + force.Range * 40.0 >= (double)BoardSize)
+                    
+                    if (force.PosX + opponent.ListOfForces[0].PosX + force.Range * 100.0 >= (double)BoardSize)
                     {
+                        force.Stop = true;
                         force.Atack(opponent.ListOfForces[0]);
                     }
+           
                 }
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            foreach (var force in ListOfForces)
+            {
+                force.Draw(spriteBatch, PlayerID,BoardSize);
             }
         }
 
