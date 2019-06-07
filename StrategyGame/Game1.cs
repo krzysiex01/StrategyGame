@@ -93,8 +93,12 @@ namespace StrategyGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            // TODO: Add your drawing code here - only simple draw methods ;)
-            userInterface.Draw(spriteBatch);
+
+            // TODO: Add your drawing code here
+            foreach (var force in player1.ListOfForces)
+            {
+                force.Draw(spriteBatch);
+            }
             base.Draw(gameTime);
         }
     }
