@@ -13,10 +13,12 @@ namespace StrategyGame
         SpriteBatch spriteBatch;
         private Player player1;
         private Player player2;
+        public int size { get; set; }
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            size = 1000;
             Content.RootDirectory = "Content";
         }
 
@@ -28,8 +30,8 @@ namespace StrategyGame
         /// </summary>
         protected override void Initialize()
         {
-            player1 = new Player();
-            player2 = new Player();
+            player1 = new Player(size);
+            player2 = new Player(size);
             //Add new forces here - temporary
 
             base.Initialize();
