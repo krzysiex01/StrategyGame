@@ -12,6 +12,9 @@ namespace StrategyGame
         public Texture2D explosiveForce;
         public Texture2D rocketForce;
         public Texture2D rifleForce;
+        public Texture2D explosiveButtonFocused;
+        public Texture2D explosiveButton;
+
 
         public TexturePack(Game game)
         {
@@ -20,6 +23,8 @@ namespace StrategyGame
             explosiveForce = game.Content.Load<Texture2D>("wybuchowy");
             rocketForce = game.Content.Load<Texture2D>("rakiety");
             rifleForce = game.Content.Load<Texture2D>("karabin");
+            explosiveButton = game.Content.Load<Texture2D>("ExplosiveButton");
+            explosiveButtonFocused = game.Content.Load<Texture2D>("ExplosiveButtonFocused");
 
         }
     }
