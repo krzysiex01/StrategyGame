@@ -12,15 +12,15 @@ namespace StrategyGame
             Id = ForcesType.Dziala;
             Hp = 200;
             Range = 4;
-            Speed = 30;
-            Armor = 0.7;
+            Speed = 20;
+            Armor = 0.75;
             AtackPoints = 90;
             Cost = 240;
             Accuracy = 0.5;
             Ammo = 500;
             AmmoMax = 500;
             Texture = texturePack.cannonForce;
-            Reload = 4.0;
+            Reload = 5.0;
             LastShot = gameTime.TotalGameTime.TotalSeconds;
         }
     }

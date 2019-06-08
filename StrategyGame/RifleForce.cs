@@ -12,9 +12,9 @@ namespace StrategyGame
             Id = ForcesType.Karabin;
             Hp = 80;
             Range = 3;
-            Speed = 50;
+            Speed = 60;
             Armor = 0.9;
-            AtackPoints = 5;
+            AtackPoints = 2;
             Cost = 150;
             Accuracy = 0.9;
             Ammo = 200;

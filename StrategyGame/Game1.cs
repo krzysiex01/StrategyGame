@@ -25,7 +25,10 @@ namespace StrategyGame
             Size = 1000;
             Content.RootDirectory = "Content";
             IsFixedTimeStep = true;
-            Fps = 100;
+            Fps = 60;
+            graphics.PreferredBackBufferWidth = 1000;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 480;   // set this value to the desired height of your window
+            graphics.ApplyChanges();
             TargetElapsedTime = TimeSpan.FromMilliseconds(1000.0/((double)Fps));
         }
 

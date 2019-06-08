@@ -12,7 +12,7 @@ namespace StrategyGame
             Id = ForcesType.Rakiety;
             Hp = 120;
             Range = 2;
-            Speed = 30;
+            Speed = 40;
             Armor = 0.8;
             AtackPoints = 35;
             Cost = 180;
