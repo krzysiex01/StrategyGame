@@ -38,7 +38,7 @@ namespace StrategyGame
             }
         }
 
-        public void Update(Player opponent,int fps)
+        public void Update(Player opponent,int fps,GameTime gameTime)
         {
             foreach (Force force in ListOfForces)
             {

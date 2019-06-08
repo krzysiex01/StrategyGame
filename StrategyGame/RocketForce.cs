@@ -6,13 +6,14 @@
         {
             Id = ForcesType.Rakiety;
             Hp = 120;
-            Range = 2; //blisko
+            Range = 2;
             Speed = 30;
             Armor = 1;
             AtackPoints = 35;
             Cost = 180;
             Accuracy = 0.5;
             Texture = texturePack.rocketForce;
+            Reload = 2.0;
         }
 
         public override void Atack(Force enemyForce)

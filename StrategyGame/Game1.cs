@@ -82,8 +82,8 @@ namespace StrategyGame
 
 
             //Player update logic
-            player1.Update(player2,Fps);
-            player2.Update(player1,Fps);
+            player1.Update(player2,Fps,gameTime);
+            player2.Update(player1,Fps,gameTime);
             player1.DestroyNoHp();
             player2.DestroyNoHp();
             userInterface.Update();

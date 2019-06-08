@@ -6,7 +6,7 @@
         {
             Id = ForcesType.Wybuchowy;
             Hp = 25;
-            Range = 1; //z bliska
+            Range = 1;
             Speed = 60;
             Armor = 4;
             AtackPoints = 100;

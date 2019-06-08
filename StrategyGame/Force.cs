@@ -25,7 +25,9 @@ namespace StrategyGame
         public double PosY { get; set; } // NOT IMPLEMENTED
 
         public bool Stop { get; set; }
-        public bool Reloading { get; set; } // NOT IMPLEMENTED
+        public double Reload { get; set; } // IS BEING IMPLEMENTED
+        public TimeSpan LastShot { get; set; } //IS BEING IMPLEMENTED
+
 
         public Texture2D Texture { get; set; }
 

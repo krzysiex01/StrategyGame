@@ -6,7 +6,7 @@
         {
             Id = ForcesType.Dziala;
             Hp = 200;
-            Range = 4; //jeszcze dalej
+            Range = 4;
             Speed = 30;
             Armor = 4;
             AtackPoints = 1;
@@ -15,6 +15,7 @@
             Ammo = 500;
             AmmoMax = 500;
             Texture = texturePack.cannonForce;
+            Reload = 5.0;
         }
     }
 }

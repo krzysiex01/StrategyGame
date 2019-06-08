@@ -6,7 +6,7 @@
         {
             Id = ForcesType.Karabin;
             Hp = 80;
-            Range = 3; //dalej
+            Range = 3;
             Speed = 50;
             Armor = 2;
             AtackPoints = 5;
@@ -15,6 +15,7 @@
             Ammo = 200;
             AmmoMax = 200;
             Texture = texturePack.rifleForce;
+            Reload = 0.1;
         }
 
     }

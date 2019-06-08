@@ -10,7 +10,7 @@ namespace StrategyGame
         {
             Id = ForcesType.BazaDronow;
             Hp = 150;
-            Range = 2; //blisko
+            Range = 2;
             Speed = 40;
             Armor = 1;
             AtackPoints = 0;
