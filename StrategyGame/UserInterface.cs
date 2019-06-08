@@ -49,7 +49,7 @@ namespace StrategyGame
             }
             else if (FocusID >= NumberOfButtons)
             {
-                FocusID = FocusID = 0;
+                FocusID = 0;
             }
 
             if (state.IsKeyDown(Keys.Enter) & !PrevState.IsKeyDown(Keys.Enter))
