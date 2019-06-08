@@ -76,7 +76,7 @@ namespace StrategyGame
             }
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             KeyboardState state = Keyboard.GetState();
 
@@ -105,27 +105,27 @@ namespace StrategyGame
                 {
                     case ButtonID.cannonForceButton:
                         {
-                            Player1.AddForces(new CannonForce(TexturePack));
+                            Player1.AddForces(new CannonForce(TexturePack,gameTime));
                             break;
                         }
                     case ButtonID.explosiveForceButton:
                         {
-                            Player1.AddForces(new ExplosiveForce(TexturePack));
+                            Player1.AddForces(new ExplosiveForce(TexturePack, gameTime));
                             break;
                         }
                     case ButtonID.rifleForceButton:
                         {
-                            Player1.AddForces(new RifleForce(TexturePack));
+                            Player1.AddForces(new RifleForce(TexturePack, gameTime));
                             break;
                         }
                     case ButtonID.rocketForceButton:
                         {
-                            Player1.AddForces(new RocketForce(TexturePack));
+                            Player1.AddForces(new RocketForce(TexturePack, gameTime));
                             break;
                         }
                     case ButtonID.droneCarrierForceButton:
                         {
-                            Player1.AddForces(new DroneCarrierForce(TexturePack));
+                            Player1.AddForces(new DroneCarrierForce(TexturePack, gameTime));
                             break;
                         }
                     default:
@@ -135,7 +135,7 @@ namespace StrategyGame
             //TEMP ADDING ENEMY
             if (state.IsKeyDown(Keys.Space) & !PrevState.IsKeyDown(Keys.Space))
             {
-                Player2.AddForces(new CannonForce(TexturePack));
+                Player2.AddForces(new CannonForce(TexturePack,gameTime));
             }
 
                 PrevState = state;

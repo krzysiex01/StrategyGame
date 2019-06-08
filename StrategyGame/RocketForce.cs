@@ -1,8 +1,13 @@
-﻿namespace StrategyGame
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using System;
+
+namespace StrategyGame
 {
     public class RocketForce : Force
     {
-        public RocketForce(TexturePack texturePack)
+        public RocketForce(TexturePack texturePack, GameTime gameTime)
         {
             Id = ForcesType.Rakiety;
             Hp = 120;
@@ -14,12 +19,13 @@
             Accuracy = 0.5;
             Texture = texturePack.rocketForce;
             Reload = 2.0;
+            LastShot = gameTime.TotalGameTime.TotalSeconds;
         }
 
-        public override void Atack(Force enemyForce)
+        public override void Atack(Force enemyForce,GameTime gameTime)
         {
-            base.Atack(enemyForce);
-            base.Atack(enemyForce);
+            base.Atack(enemyForce, gameTime);
+            base.Atack(enemyForce, gameTime);
         }
 
     }

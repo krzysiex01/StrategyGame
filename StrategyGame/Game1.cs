@@ -86,7 +86,7 @@ namespace StrategyGame
             player2.Update(player1,Fps,gameTime);
             player1.DestroyNoHp();
             player2.DestroyNoHp();
-            userInterface.Update();
+            userInterface.Update(gameTime);
 
             base.Update(gameTime);
         }

@@ -26,14 +26,19 @@ namespace StrategyGame
 
         public bool Stop { get; set; }
         public double Reload { get; set; } // IS BEING IMPLEMENTED
-        public TimeSpan LastShot { get; set; } //IS BEING IMPLEMENTED
+        public double LastShot { get; set; } //IS BEING IMPLEMENTED
 
 
         public Texture2D Texture { get; set; }
 
-        public virtual void Atack(Force enemyForce)
+        public virtual void Atack(Force enemyForce, GameTime gameTime)
         {
-            enemyForce.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy));
+            if(gameTime.TotalGameTime.TotalSeconds-LastShot>=Reload)
+            {
+                enemyForce.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy));
+                LastShot = gameTime.TotalGameTime.TotalSeconds;
+            }
+                
         }
 
         public virtual void Defend(Missile missile)

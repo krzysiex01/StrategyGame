@@ -54,7 +54,7 @@ namespace StrategyGame
                     if (force.PosX + opponent.ListOfForces[0].PosX + force.Range * 100.0 >= (double)BoardSize)
                     {
                         force.Stop = true;
-                        force.Atack(opponent.ListOfForces[0]);
+                        force.Atack(opponent.ListOfForces[0],gameTime);
                     }
            
                 }

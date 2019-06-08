@@ -1,4 +1,8 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace StrategyGame
 {
@@ -6,7 +10,7 @@ namespace StrategyGame
     {
         List<DroneForce> drones { get; set; }
 
-        public DroneCarrierForce(TexturePack texturePack)
+        public DroneCarrierForce(TexturePack texturePack, GameTime gameTime)
         {
             Id = ForcesType.BazaDronow;
             Hp = 150;
@@ -19,19 +23,21 @@ namespace StrategyGame
             Ammo = 0;
             AmmoMax = 0;
             Texture = texturePack.droneCarrierForce;
+            //LastShot = gameTime.TotalGameTime.TotalSeconds;
+            //Reload = 0.3;
             drones = new List<DroneForce>();
 
             for (int i = 0; i < 5; i++)
             {
-                drones.Add(new DroneForce());
+                drones.Add(new DroneForce(gameTime));
             }
         }
 
-        public override void Atack(Force enemyForce)
+        public override void Atack(Force enemyForce,GameTime gameTime)
         {
             foreach (DroneForce drone in drones)
             {
-                drone.Atack(enemyForce);
+                drone.Atack(enemyForce, gameTime);
             }
         }
 

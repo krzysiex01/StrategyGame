@@ -1,8 +1,13 @@
-﻿namespace StrategyGame
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using System;
+
+namespace StrategyGame
 {
     public class DroneForce : Force
     {
-        public DroneForce()
+        public DroneForce(GameTime gameTime)
         {
             Id = ForcesType.Drony;
             Hp = 15;
@@ -15,6 +20,7 @@
             Ammo = 200;
             AmmoMax = 200;
             Reload = 0.3;
+            LastShot = gameTime.TotalGameTime.TotalSeconds;
         }
     }
 }
