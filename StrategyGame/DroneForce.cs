@@ -7,7 +7,7 @@
             Id = ForcesType.Drony;
             Hp = 15;
             Range = 2; //blisko
-            Speed = 20;
+            Speed = 40;
             Armor = 0;
             AtackPoints = 1;
             Cost = 220;

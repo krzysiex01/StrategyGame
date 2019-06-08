@@ -38,11 +38,11 @@ namespace StrategyGame
             }
         }
 
-        public void Update(Player opponent)
+        public void Update(Player opponent,int fps)
         {
             foreach (Force force in ListOfForces)
             {
-                force.Move();
+                force.Move(fps);
             }
 
             foreach (Force force in ListOfForces)

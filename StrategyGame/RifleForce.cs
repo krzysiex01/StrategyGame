@@ -7,7 +7,7 @@
             Id = ForcesType.Karabin;
             Hp = 80;
             Range = 3; //dalej
-            Speed = 25;
+            Speed = 50;
             Armor = 2;
             AtackPoints = 5;
             Cost = 150;

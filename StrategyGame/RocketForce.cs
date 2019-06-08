@@ -7,7 +7,7 @@
             Id = ForcesType.Rakiety;
             Hp = 120;
             Range = 2; //blisko
-            Speed = 15;
+            Speed = 30;
             Armor = 1;
             AtackPoints = 35;
             Cost = 180;

@@ -7,7 +7,7 @@
             Id = ForcesType.Wybuchowy;
             Hp = 25;
             Range = 1; //z bliska
-            Speed = 30;
+            Speed = 60;
             Armor = 4;
             AtackPoints = 100;
             Cost = 100;

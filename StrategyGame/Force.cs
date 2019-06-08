@@ -42,11 +42,11 @@ namespace StrategyGame
             }
         }
 
-        public void Move()
+        public void Move(int fps)
         {
             if (!Stop)
             {
-                PosX += 0.1 * Speed;
+                PosX += 1.0/((double)fps) * Speed;
             }
         }
 

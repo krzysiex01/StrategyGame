@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace StrategyGame
 {
@@ -16,12 +17,16 @@ namespace StrategyGame
         private UserInterface userInterface;
         public TexturePack texturePack;
         public int Size { get; set; }
+        public int Fps { get; set; }
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Size = 1000;
             Content.RootDirectory = "Content";
+            IsFixedTimeStep = true;
+            Fps = 100;
+            TargetElapsedTime = TimeSpan.FromMilliseconds(1000.0/((double)Fps));
         }
 
         /// <summary>
@@ -77,8 +82,8 @@ namespace StrategyGame
 
 
             //Player update logic
-            player1.Update(player2);
-            player2.Update(player1);
+            player1.Update(player2,Fps);
+            player2.Update(player1,Fps);
             player1.DestroyNoHp();
             player2.DestroyNoHp();
             userInterface.Update();

@@ -7,7 +7,7 @@
             Id = ForcesType.Dziala;
             Hp = 200;
             Range = 4; //jeszcze dalej
-            Speed = 15;
+            Speed = 30;
             Armor = 4;
             AtackPoints = 1;
             Cost = 240;
