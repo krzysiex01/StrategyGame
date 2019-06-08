@@ -13,7 +13,7 @@ namespace StrategyGame
             Hp = 120;
             Range = 2;
             Speed = 30;
-            Armor = 1;
+            Armor = 0.8;
             AtackPoints = 35;
             Cost = 180;
             Accuracy = 0.5;

@@ -14,7 +14,7 @@ namespace StrategyGame
         public double Hp { get; set; }
         public double Range { get; set; }
         public double Speed { get; set; }
-        public int Armor { get; set; } // Storing as % value - TODO: UPDATE VALUES
+        public double Armor { get; set; } // Storing as % value - the more the WORSE
         public double AtackPoints { get; set; }
         public int Cost { get; set; }
         public double Accuracy { get; set; }
