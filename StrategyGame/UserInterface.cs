@@ -19,29 +19,43 @@ namespace StrategyGame
         public ButtonID ButtonId { get; set; }
         Texture2D TextureFocused { get; set; }
         Texture2D TextureBasic { get; set; }
+        Texture2D TextureUpgradeBasic { get; set; }
+        Texture2D TextureUpgradeFocused { get; set; }
         int PosX { get; set; }
         int PosY { get; set; }
 
-        public Button(int x,int y, Texture2D textureFocused, Texture2D textureBasic, ButtonID buttonID)
+        public Button(int x, int y, Texture2D textureFocused, Texture2D textureBasic, Texture2D textureUpgradeFocused, Texture2D textureUpgradeBasic, ButtonID buttonID)
         {
             PosX = x;
             PosY = y;
             TextureBasic = textureBasic;
             TextureFocused = textureFocused;
             ButtonId = buttonID;
+            TextureUpgradeBasic = textureUpgradeBasic;
+            TextureUpgradeFocused = textureUpgradeFocused;
         }
 
         public void DrawBasic(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(TextureBasic, new Vector2(PosX, PosY), new Rectangle(0, 0, TextureBasic.Width, TextureBasic.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.FlipHorizontally, 1);
+            spriteBatch.Draw(TextureBasic, new Vector2(PosX, PosY), new Rectangle(0, 0, TextureBasic.Width, TextureBasic.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.None, 1);
+            spriteBatch.Draw(TextureUpgradeBasic, new Vector2(PosX, PosY+103), new Rectangle(0, 0, TextureUpgradeBasic.Width, TextureUpgradeBasic.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.None, 1);
             spriteBatch.End();
         }
 
-        public void DrawFocused(SpriteBatch spriteBatch)
+        public void DrawFocused(SpriteBatch spriteBatch, bool UpgradeFocus)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(TextureFocused, new Vector2(PosX, PosY), new Rectangle(0, 0, TextureFocused.Width, TextureFocused.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.FlipHorizontally, 1);
+            if (UpgradeFocus)
+            {
+                spriteBatch.Draw(TextureBasic, new Vector2(PosX, PosY), new Rectangle(0, 0, TextureBasic.Width, TextureBasic.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.None, 1);
+                spriteBatch.Draw(TextureUpgradeFocused, new Vector2(PosX, PosY + 103), new Rectangle(0, 0, TextureUpgradeFocused.Width, TextureUpgradeFocused.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.None, 1);
+            }
+            else
+            {
+                spriteBatch.Draw(TextureFocused, new Vector2(PosX, PosY), new Rectangle(0, 0, TextureFocused.Width, TextureFocused.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.None, 1);
+                spriteBatch.Draw(TextureUpgradeBasic, new Vector2(PosX, PosY+103), new Rectangle(0, 0, TextureUpgradeBasic.Width, TextureUpgradeBasic.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.None, 1);
+            }
             spriteBatch.End();
         }
     }
@@ -49,6 +63,7 @@ namespace StrategyGame
     public class UserInterface
     {
         int FocusID { get; set; }
+        bool UpgradeFocus { get; set; }
         int NumberOfButtons { get; set; }
         Button[] Buttons { get; set; }
         Player Player1 { get; set; }
@@ -66,13 +81,14 @@ namespace StrategyGame
             PrevState = Keyboard.GetState();
             Buttons = new Button[5];
             CreateButtons(Buttons);
+            UpgradeFocus = false;
         }
 
         private void CreateButtons(Button[] buttons)
         {
-            for (int i = 0; i < buttons.Length; i++)
+            for (int i = 0; i < NumberOfButtons; i++)
             {
-                buttons[i] = new Button(i*110,0,TexturePack.explosiveButtonFocused,TexturePack.explosiveButton,(ButtonID)i);
+                buttons[i] = new Button(i * 110, 0, TexturePack.explosiveButtonFocused, TexturePack.explosiveButton,TexturePack.upgradeButtonFocused,TexturePack.upgradeButton, (ButtonID)i);
             }
         }
 
@@ -83,11 +99,22 @@ namespace StrategyGame
             if (state.IsKeyDown(Keys.Right) & !PrevState.IsKeyDown(Keys.Right))
             {
                 FocusID += 1;
+                UpgradeFocus = false;
 
             }
             if (state.IsKeyDown(Keys.Left) & !PrevState.IsKeyDown(Keys.Left))
             {
                 FocusID -= 1;
+                UpgradeFocus = false;
+            }
+
+            if (state.IsKeyDown(Keys.Down) & !PrevState.IsKeyDown(Keys.Down))
+            {
+                UpgradeFocus = !UpgradeFocus;
+            }
+            if (state.IsKeyDown(Keys.Up) & !PrevState.IsKeyDown(Keys.Up))
+            {
+                UpgradeFocus = !UpgradeFocus;
             }
 
             if (FocusID < 0)
@@ -101,44 +128,52 @@ namespace StrategyGame
 
             if (state.IsKeyDown(Keys.Enter) & !PrevState.IsKeyDown(Keys.Enter))
             {
-                switch ((ButtonID)FocusID)
+                if (!UpgradeFocus)
                 {
-                    case ButtonID.cannonForceButton:
-                        {
-                            Player1.AddForces(new CannonForce(TexturePack,gameTime));
+
+                    switch ((ButtonID)FocusID)
+                    {
+                        case ButtonID.cannonForceButton:
+                            {
+                                Player1.AddForces(new CannonForce(TexturePack, gameTime));
+                                break;
+                            }
+                        case ButtonID.explosiveForceButton:
+                            {
+                                Player1.AddForces(new ExplosiveForce(TexturePack, gameTime));
+                                break;
+                            }
+                        case ButtonID.rifleForceButton:
+                            {
+                                Player1.AddForces(new RifleForce(TexturePack, gameTime));
+                                break;
+                            }
+                        case ButtonID.rocketForceButton:
+                            {
+                                Player1.AddForces(new RocketForce(TexturePack, gameTime));
+                                break;
+                            }
+                        case ButtonID.droneCarrierForceButton:
+                            {
+                                Player1.AddForces(new DroneCarrierForce(TexturePack, gameTime));
+                                break;
+                            }
+                        default:
                             break;
-                        }
-                    case ButtonID.explosiveForceButton:
-                        {
-                            Player1.AddForces(new ExplosiveForce(TexturePack, gameTime));
-                            break;
-                        }
-                    case ButtonID.rifleForceButton:
-                        {
-                            Player1.AddForces(new RifleForce(TexturePack, gameTime));
-                            break;
-                        }
-                    case ButtonID.rocketForceButton:
-                        {
-                            Player1.AddForces(new RocketForce(TexturePack, gameTime));
-                            break;
-                        }
-                    case ButtonID.droneCarrierForceButton:
-                        {
-                            Player1.AddForces(new DroneCarrierForce(TexturePack, gameTime));
-                            break;
-                        }
-                    default:
-                        break;
+                    }
+                }
+                else
+                {
+                    //TODO: Upgrade Logic Here
                 }
             }
             //TEMP ADDING ENEMY
             if (state.IsKeyDown(Keys.Space) & !PrevState.IsKeyDown(Keys.Space))
             {
-                Player2.AddForces(new CannonForce(TexturePack,gameTime));
+                Player2.AddForces(new CannonForce(TexturePack, gameTime));
             }
 
-                PrevState = state;
+            PrevState = state;
         }
 
         private void DrawBasicInterface(SpriteBatch spriteBatch)
@@ -151,7 +186,7 @@ namespace StrategyGame
                 }
                 else
                 {
-                    Buttons[FocusID].DrawFocused(spriteBatch);
+                    Buttons[FocusID].DrawFocused(spriteBatch,UpgradeFocus);
                 }
             }
 

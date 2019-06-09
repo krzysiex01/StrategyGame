@@ -33,12 +33,12 @@ namespace StrategyGame
 
         public virtual void Atack(Force enemyForce, GameTime gameTime)
         {
-            if(gameTime.TotalGameTime.TotalSeconds-LastShot>=Reload)
+            if (gameTime.TotalGameTime.TotalSeconds - LastShot >= Reload)
             {
                 enemyForce.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy));
                 LastShot = gameTime.TotalGameTime.TotalSeconds;
             }
-                
+
         }
 
         public virtual void Defend(Missile missile)
@@ -53,7 +53,7 @@ namespace StrategyGame
         {
             if (!Stop)
             {
-                PosX += 1.0/((double)fps) * Speed;
+                PosX += 1.0 / ((double)fps) * Speed;
             }
         }
 
@@ -64,7 +64,7 @@ namespace StrategyGame
             {
                 case 1:
                     {
-                        spriteBatch.Draw(Texture, new Vector2((int)PosX-(int)(0.2*(double)Texture.Width), 300), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.FlipHorizontally, 1);
+                        spriteBatch.Draw(Texture, new Vector2((int)PosX - (int)(0.2 * (double)Texture.Width), 300), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.FlipHorizontally, 1);
                         break;
                     }
                 case 2:

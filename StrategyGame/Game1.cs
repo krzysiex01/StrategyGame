@@ -81,7 +81,8 @@ namespace StrategyGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            //TODO: Add Interface class update
+            //Interface class update
+            userInterface.Update(gameTime);
 
 
             //Player update logic
@@ -89,7 +90,6 @@ namespace StrategyGame
             player2.Update(player1,Fps,gameTime);
             player1.DestroyNoHp();
             player2.DestroyNoHp();
-            userInterface.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -101,11 +101,11 @@ namespace StrategyGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            //Drawing code
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
-            // TODO: Add your drawing code here
-            
             userInterface.Draw(spriteBatch);
+            
             base.Draw(gameTime);
         }
     }

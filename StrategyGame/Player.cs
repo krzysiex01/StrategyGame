@@ -6,6 +6,17 @@ using Microsoft.Xna.Framework.Input;
 
 namespace StrategyGame
 {
+    public static class Utility
+    {
+        public class SortByX : IComparer<Force>
+        {
+            public int Compare(Force f1, Force f2)
+            {
+                return f1.PosX > f2.PosX ? 1 : -1;
+            }
+        }
+    }
+
     public class Player
     {
         public List<Force> ListOfForces { get; set; }
@@ -15,7 +26,7 @@ namespace StrategyGame
 
         public int PlayerID { get; set; }
 
-        public Player(int size,int id)
+        public Player(int size, int id)
         {
             ListOfForces = new List<Force>();
             Upgrades = new int[Enum.GetNames(typeof(ForcesType)).Length];
@@ -38,8 +49,10 @@ namespace StrategyGame
             }
         }
 
-        public void Update(Player opponent,int fps,GameTime gameTime)
+        public void Update(Player opponent, int fps, GameTime gameTime)
         {
+            ListOfForces.Sort(new Utility.SortByX()); //still can be better
+
             foreach (Force force in ListOfForces)
             {
                 force.Move(fps);
@@ -48,15 +61,13 @@ namespace StrategyGame
             foreach (Force force in ListOfForces)
             {
                 force.Stop = false;
-                if(opponent.ListOfForces.Count > 0)
+                if (opponent.ListOfForces.Count > 0)
                 {
-                    
                     if (force.PosX + opponent.ListOfForces[0].PosX + force.Range * 100.0 >= (double)BoardSize)
                     {
                         force.Stop = true;
-                        force.Atack(opponent.ListOfForces[0],gameTime);
+                        force.Atack(opponent.ListOfForces[0], gameTime);
                     }
-           
                 }
             }
         }
@@ -65,7 +76,7 @@ namespace StrategyGame
         {
             foreach (var force in ListOfForces)
             {
-                force.Draw(spriteBatch, PlayerID,BoardSize);
+                force.Draw(spriteBatch, PlayerID, BoardSize);
             }
         }
 
