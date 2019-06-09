@@ -12,7 +12,7 @@ namespace StrategyGame
         {
             public int Compare(Force f1, Force f2)
             {
-                return f1.PosX > f2.PosX ? 1 : -1;
+                return f1.PosX < f2.PosX ? 1 : -1;
             }
         }
     }
