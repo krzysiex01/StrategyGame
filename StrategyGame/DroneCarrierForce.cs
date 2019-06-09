@@ -31,6 +31,7 @@ namespace StrategyGame
             {
                 drones.Add(new DroneForce(gameTime));
             }
+
         }
 
         public override void Atack(Force enemyForce,GameTime gameTime)

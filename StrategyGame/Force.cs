@@ -38,7 +38,6 @@ namespace StrategyGame
                 enemyForce.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy));
                 LastShot = gameTime.TotalGameTime.TotalSeconds;
             }
-
         }
 
         public virtual void Defend(Missile missile)

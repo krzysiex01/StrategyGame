@@ -9,10 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace StrategyGame
 {
-    public enum ButtonID
-    {
-        cannonForceButton, droneCarrierForceButton, explosiveForceButton, rocketForceButton, rifleForceButton
-    }
+   
 
     public class Button
     {
@@ -39,7 +36,7 @@ namespace StrategyGame
         {
             spriteBatch.Begin();
             spriteBatch.Draw(TextureBasic, new Vector2(PosX, PosY), new Rectangle(0, 0, TextureBasic.Width, TextureBasic.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.None, 1);
-            spriteBatch.Draw(TextureUpgradeBasic, new Vector2(PosX, PosY+103), new Rectangle(0, 0, TextureUpgradeBasic.Width, TextureUpgradeBasic.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.None, 1);
+            spriteBatch.Draw(TextureUpgradeBasic, new Vector2(PosX, PosY + 103), new Rectangle(0, 0, TextureUpgradeBasic.Width, TextureUpgradeBasic.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.None, 1);
             spriteBatch.End();
         }
 
@@ -54,7 +51,7 @@ namespace StrategyGame
             else
             {
                 spriteBatch.Draw(TextureFocused, new Vector2(PosX, PosY), new Rectangle(0, 0, TextureFocused.Width, TextureFocused.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.None, 1);
-                spriteBatch.Draw(TextureUpgradeBasic, new Vector2(PosX, PosY+103), new Rectangle(0, 0, TextureUpgradeBasic.Width, TextureUpgradeBasic.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.None, 1);
+                spriteBatch.Draw(TextureUpgradeBasic, new Vector2(PosX, PosY + 103), new Rectangle(0, 0, TextureUpgradeBasic.Width, TextureUpgradeBasic.Height), Color.White, 0, new Vector2(0, 0), 0.5f, SpriteEffects.None, 1);
             }
             spriteBatch.End();
         }
@@ -88,7 +85,7 @@ namespace StrategyGame
         {
             for (int i = 0; i < NumberOfButtons; i++)
             {
-                buttons[i] = new Button(i * 110, 0, TexturePack.explosiveButtonFocused, TexturePack.explosiveButton,TexturePack.upgradeButtonFocused,TexturePack.upgradeButton, (ButtonID)i);
+                buttons[i] = new Button(i * 110, 0, TexturePack.explosiveButtonFocused, TexturePack.explosiveButton, TexturePack.upgradeButtonFocused, TexturePack.upgradeButton, (ButtonID)i);
             }
         }
 
@@ -130,7 +127,6 @@ namespace StrategyGame
             {
                 if (!UpgradeFocus)
                 {
-
                     switch ((ButtonID)FocusID)
                     {
                         case ButtonID.cannonForceButton:
@@ -164,7 +160,7 @@ namespace StrategyGame
                 }
                 else
                 {
-                    //TODO: Upgrade Logic Here
+                    Player1.Upgrade((ForcesType)FocusID);
                 }
             }
             //TEMP ADDING ENEMY
@@ -186,7 +182,7 @@ namespace StrategyGame
                 }
                 else
                 {
-                    Buttons[FocusID].DrawFocused(spriteBatch,UpgradeFocus);
+                    Buttons[FocusID].DrawFocused(spriteBatch, UpgradeFocus);
                 }
             }
 
