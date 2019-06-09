@@ -9,8 +9,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace StrategyGame
 {
-   
-
     public class Button
     {
         public ButtonID ButtonId { get; set; }
@@ -164,9 +162,25 @@ namespace StrategyGame
                 }
             }
             //TEMP ADDING ENEMY
-            if (state.IsKeyDown(Keys.Space) & !PrevState.IsKeyDown(Keys.Space))
+            if (state.IsKeyDown(Keys.NumPad1) & !PrevState.IsKeyDown(Keys.NumPad1))
             {
                 Player2.AddForces(new CannonForce(TexturePack, gameTime));
+            }
+            if (state.IsKeyDown(Keys.NumPad2) & !PrevState.IsKeyDown(Keys.NumPad2))
+            {
+                Player2.AddForces(new ExplosiveForce(TexturePack, gameTime));
+            }
+            if (state.IsKeyDown(Keys.NumPad3) & !PrevState.IsKeyDown(Keys.NumPad3))
+            {
+                Player2.AddForces(new DroneCarrierForce(TexturePack, gameTime));
+            }
+            if (state.IsKeyDown(Keys.NumPad4) & !PrevState.IsKeyDown(Keys.NumPad4))
+            {
+                Player2.AddForces(new RocketForce(TexturePack, gameTime));
+            }
+            if (state.IsKeyDown(Keys.NumPad5) & !PrevState.IsKeyDown(Keys.NumPad5))
+            {
+                Player2.AddForces(new RifleForce(TexturePack, gameTime));
             }
 
             PrevState = state;
