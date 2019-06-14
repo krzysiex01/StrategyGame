@@ -15,7 +15,8 @@ namespace StrategyGame
         public Player player1;
         public Player player2;
         private UserInterface userInterface;
-        public TexturePack texturePack;
+        private TexturePack texturePack;
+        private FontPack fontPack;
         public int Size { get; set; }
         public int Fps { get; set; }
 
@@ -29,7 +30,7 @@ namespace StrategyGame
             graphics.PreferredBackBufferWidth = 1000;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 480;   // set this value to the desired height of your window
             graphics.ApplyChanges();
-            TargetElapsedTime = TimeSpan.FromMilliseconds(1000.0/((double)Fps));
+            TargetElapsedTime = TimeSpan.FromMilliseconds(1000.0/Fps);
         }
 
         /// <summary>
@@ -43,7 +44,8 @@ namespace StrategyGame
             player1 = new Player(Size,1);
             player2 = new Player(Size,2);
             texturePack = new TexturePack(this);
-            userInterface = new UserInterface(player1,player2,texturePack);
+            fontPack = new FontPack(this);
+            userInterface = new UserInterface(player1,player2,texturePack,fontPack);
             //Add new forces here - temporary
 
             base.Initialize();
@@ -81,6 +83,7 @@ namespace StrategyGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
             //Interface class update
             userInterface.Update(gameTime);
 

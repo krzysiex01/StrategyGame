@@ -46,6 +46,7 @@
     <Compile Include="DroneCarrierForce.cs" />
     <Compile Include="DroneForce.cs" />
     <Compile Include="ExplosiveForce.cs" />
+    <Compile Include="FontPack.cs" />
     <Compile Include="Force.cs" />
     <Compile Include="ForcesType.cs" />
     <Compile Include="Game1.cs" />

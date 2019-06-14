@@ -37,7 +37,7 @@ namespace StrategyGame
                 {
                     UpgradeValues[i, j] = new double[5];
                     UpgradeInfo[i, j] = "Increase all 5 basic fields +10%";
-                    UpgradeCosts[i, j] = 1000;
+                    UpgradeCosts[i, j] = 500*(j+1);
 
                     for (int k = 0; k < 5; k++)
                     {
@@ -69,7 +69,7 @@ namespace StrategyGame
         {
             ListOfForces = new List<Force>();
             Upgrades = new int[Enum.GetNames(typeof(ForcesType)).Length];
-            Cash = 1000000;
+            Cash = 10000;
             BoardSize = size;
             PlayerID = id;
         }

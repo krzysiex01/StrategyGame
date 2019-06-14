@@ -64,13 +64,15 @@ namespace StrategyGame
         Player Player1 { get; set; }
         Player Player2 { get; set; }
         TexturePack TexturePack { get; set; }
+        FontPack FontPack { get; set; }
         KeyboardState PrevState { get; set; }
 
-        public UserInterface(Player player1, Player player2, TexturePack texturePack)
+        public UserInterface(Player player1, Player player2, TexturePack texturePack,FontPack fontPack)
         {
             FocusID = 0;
             NumberOfButtons = 5;
             TexturePack = texturePack;
+            FontPack = fontPack;
             Player1 = player1;
             Player2 = player2;
             PrevState = Keyboard.GetState();
@@ -85,6 +87,42 @@ namespace StrategyGame
             {
                 buttons[i] = new Button(i * 110, 0, TexturePack.explosiveButtonFocused, TexturePack.explosiveButton, TexturePack.upgradeButtonFocused, TexturePack.upgradeButton, (ButtonID)i);
             }
+        }
+
+
+        private void DrawBasicInterface(SpriteBatch spriteBatch)
+        {
+            foreach (Button b in Buttons)
+            {
+                if ((int)b.ButtonId != FocusID)
+                {
+                    b.DrawBasic(spriteBatch);
+                }
+                else
+                {
+                    Buttons[FocusID].DrawFocused(spriteBatch, UpgradeFocus);
+                }
+            }
+
+        }
+
+        private void DrawStrings(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin();
+            spriteBatch.DrawString(FontPack.BasicFont, Player1.Cash.ToString() + '$', new Vector2(600, 40), Color.Black);
+            if (UpgradeFocus)
+            {
+                spriteBatch.DrawString(FontPack.BasicFont,"Level: " + Player1.Upgrades[FocusID].ToString(), new Vector2(730, 40), Color.GreenYellow);
+                spriteBatch.DrawString(FontPack.BasicFont,UpgradePack.UpgradeInfo[FocusID, Player1.Upgrades[FocusID]], new Vector2(600, 130), Color.Pink);
+                spriteBatch.DrawString(FontPack.BasicFont, "Upgrade cost: " + UpgradePack.UpgradeCosts[FocusID, Player1.Upgrades[FocusID]].ToString() + "$", new Vector2(600, 170), Color.Pink);
+            }
+            else
+            {
+                spriteBatch.DrawString(FontPack.BasicFont, "Level: " + Player1.Upgrades[FocusID].ToString(), new Vector2(730, 40), Color.GreenYellow);
+                spriteBatch.DrawString(FontPack.BasicFont, ((ForcesType)FocusID).ToString(), new Vector2(600, 130), Color.Pink);
+                spriteBatch.DrawString(FontPack.BasicFont, "Cost: " + "raczej tanio", new Vector2(600, 170), Color.Pink);
+            }
+            spriteBatch.End();
         }
 
         public void Update(GameTime gameTime)
@@ -186,25 +224,10 @@ namespace StrategyGame
             PrevState = state;
         }
 
-        private void DrawBasicInterface(SpriteBatch spriteBatch)
-        {
-            foreach (Button b in Buttons)
-            {
-                if ((int)b.ButtonId != FocusID)
-                {
-                    b.DrawBasic(spriteBatch);
-                }
-                else
-                {
-                    Buttons[FocusID].DrawFocused(spriteBatch, UpgradeFocus);
-                }
-            }
-
-        }
-
         public void Draw(SpriteBatch spriteBatch)
         {
             DrawBasicInterface(spriteBatch);
+            DrawStrings(spriteBatch);
         }
     }
 }
