@@ -69,13 +69,18 @@ namespace StrategyGame
         {
             ListOfForces = new List<Force>();
             Upgrades = new int[Enum.GetNames(typeof(ForcesType)).Length];
-            Cash = 10000;
+            Cash = 100000;
             BoardSize = size;
             PlayerID = id;
         }
 
         public bool Upgrade(ForcesType forceType)
         {
+            if (Upgrades[(int)forceType] + 1 >= 10)
+            {
+                return false;
+            }
+
             int cost = UpgradePack.UpgradeCosts[(int)forceType, Upgrades[(int)forceType]+1];
 
             if (cost > Cash)

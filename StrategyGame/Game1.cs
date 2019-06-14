@@ -46,7 +46,6 @@ namespace StrategyGame
             texturePack = new TexturePack(this);
             fontPack = new FontPack(this);
             userInterface = new UserInterface(player1,player2,texturePack,fontPack);
-            //Add new forces here - temporary
 
             base.Initialize();
         }
