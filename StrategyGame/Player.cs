@@ -57,6 +57,20 @@ namespace StrategyGame
         }
     }
 
+    //public static class PurchasePack
+    //{
+    //    public static string[] ForceDescription;
+    //    public static int[] ForceCosts;
+
+    //    static PurchasePack()
+    //    {
+    //        ForceDescription = new string[6];
+    //        ForceCosts = new int[6];
+
+    //        ForceCosts[0] = ;
+    //    }
+    //}
+
     public class Player
     {
         public List<Force> ListOfForces { get; set; }
