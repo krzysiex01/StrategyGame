@@ -110,13 +110,13 @@ namespace StrategyGame
             }
         }
 
-        public void Update(Player opponent, int fps, GameTime gameTime)
+        public void Update(Player opponent, GameTime gameTime)
         {
             ListOfForces.Sort(new Utility.SortByX()); //still can be better
 
             foreach (Force force in ListOfForces)
             {
-                force.Move(fps);
+                force.Move(gameTime);
             }
 
             foreach (Force force in ListOfForces)

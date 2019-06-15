@@ -25,12 +25,12 @@ namespace StrategyGame
             graphics = new GraphicsDeviceManager(this);
             Size = 1000;
             Content.RootDirectory = "Content";
-            IsFixedTimeStep = true;
-            Fps = 60;
+            //IsFixedTimeStep = true;
+            IsFixedTimeStep = false;
             graphics.PreferredBackBufferWidth = 1000;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 480;   // set this value to the desired height of your window
             graphics.ApplyChanges();
-            TargetElapsedTime = TimeSpan.FromMilliseconds(1000.0/Fps);
+            //TargetElapsedTime = TimeSpan.FromMilliseconds(1000.0/Fps);
         }
 
         /// <summary>
@@ -86,10 +86,9 @@ namespace StrategyGame
             //Interface class update
             userInterface.Update(gameTime);
 
-
             //Player update logic
-            player1.Update(player2,Fps,gameTime);
-            player2.Update(player1,Fps,gameTime);
+            player1.Update(player2,gameTime);
+            player2.Update(player1,gameTime);
             player1.DestroyNoHp();
             player2.DestroyNoHp();
 

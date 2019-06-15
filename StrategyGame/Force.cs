@@ -48,11 +48,11 @@ namespace StrategyGame
             }
         }
 
-        public void Move(int fps)
+        public void Move(GameTime gameTime)
         {
             if (!Stop)
             {
-                PosX += 1.0 / ((double)fps) * Speed;
+                PosX += gameTime.ElapsedGameTime.TotalSeconds * Speed;
             }
         }
 

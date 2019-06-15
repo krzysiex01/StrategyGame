@@ -50,6 +50,7 @@
     <Compile Include="Force.cs" />
     <Compile Include="ForcesType.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameEvent.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Missile.cs" />
     <Compile Include="Program.cs" />

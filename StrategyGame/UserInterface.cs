@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace StrategyGame
 {
+    /// <summary>
+    /// Class representing double button for adding and upgrading forces.
+    /// </summary>
     public class Button
     {
         public ButtonID ButtonId { get; set; }
@@ -55,6 +58,9 @@ namespace StrategyGame
         }
     }
 
+    /// <summary>
+    /// Class responsible for handling player input and drawing user interface - buttons, force descriptions, cash balance, upgrade information.
+    /// </summary>
     public class UserInterface
     {
         int FocusID { get; set; }
@@ -88,7 +94,6 @@ namespace StrategyGame
                 buttons[i] = new Button(i * 110, 0, TexturePack.explosiveButtonFocused, TexturePack.explosiveButton, TexturePack.upgradeButtonFocused, TexturePack.upgradeButton, (ButtonID)i);
             }
         }
-
 
         private void DrawBasicInterface(SpriteBatch spriteBatch)
         {
@@ -125,7 +130,7 @@ namespace StrategyGame
             spriteBatch.End();
         }
 
-        public void Update(GameTime gameTime)
+        private void ProcessKeyboardInput(GameTime gameTime)
         {
             KeyboardState state = Keyboard.GetState();
 
@@ -140,7 +145,6 @@ namespace StrategyGame
                 FocusID -= 1;
                 UpgradeFocus = false;
             }
-
             if (state.IsKeyDown(Keys.Down) & !PrevState.IsKeyDown(Keys.Down))
             {
                 UpgradeFocus = !UpgradeFocus;
@@ -222,6 +226,11 @@ namespace StrategyGame
             }
 
             PrevState = state;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            ProcessKeyboardInput(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
