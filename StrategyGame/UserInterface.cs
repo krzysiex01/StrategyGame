@@ -73,6 +73,8 @@ namespace StrategyGame
         FontPack FontPack { get; set; }
         KeyboardState PrevState { get; set; }
 
+        Color tmpColor = Color.Green; // testing engine - changing color
+
         public UserInterface(Player player1, Player player2, TexturePack texturePack,FontPack fontPack)
         {
             FocusID = 0;
@@ -125,7 +127,7 @@ namespace StrategyGame
             {
                 spriteBatch.DrawString(FontPack.BasicFont, "Level: " + Player1.Upgrades[FocusID].ToString(), new Vector2(730, 40), Color.GreenYellow);
                 spriteBatch.DrawString(FontPack.BasicFont, ((ForcesType)FocusID).ToString(), new Vector2(600, 130), Color.Pink);
-                spriteBatch.DrawString(FontPack.BasicFont, "Cost: " + "raczej tanio", new Vector2(600, 170), Color.Pink);
+                spriteBatch.DrawString(FontPack.BasicFont, "Cost: " + "raczej tanio", new Vector2(600, 170), tmpColor);
             }
             spriteBatch.End();
         }
@@ -223,6 +225,14 @@ namespace StrategyGame
             if (state.IsKeyDown(Keys.NumPad5) & !PrevState.IsKeyDown(Keys.NumPad5))
             {
                 Player2.AddForces(new RifleForce(TexturePack, gameTime));
+            }
+            //testing engine
+            if (state.IsKeyDown(Keys.Space) & !PrevState.IsKeyDown(Keys.Space))
+            {
+                GameEventEngine.Add(new GameEvent(() => { tmpColor = Color.Red; },1.0f));
+                GameEventEngine.Add(new GameEvent(() => { tmpColor = Color.Green; }, 2.0f));
+                GameEventEngine.Add(new GameEvent(() => { tmpColor = Color.Black; }, 3.0f));
+                GameEventEngine.Add(new GameEvent(() => { tmpColor = Color.MediumTurquoise; }, 4.0f));
             }
 
             PrevState = state;

@@ -24,12 +24,14 @@ namespace StrategyGame
 
             while (it != null)
             {
-                var current = it.Next;
+                var next = it.Next;
 
-                if (!current.Value.Update(gameTime))
+                if (!it.Value.Update(gameTime))
                 {
-                    GameEvents.Remove(current);
+                    GameEvents.Remove(it);
                 }
+
+                it = next;
             }
         }
     }

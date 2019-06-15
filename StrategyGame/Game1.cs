@@ -83,6 +83,8 @@ namespace StrategyGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            GameEventEngine.Update(gameTime);
+
             //Interface class update
             userInterface.Update(gameTime);
 
