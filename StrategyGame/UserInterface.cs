@@ -229,10 +229,10 @@ namespace StrategyGame
             //testing engine
             if (state.IsKeyDown(Keys.Space) & !PrevState.IsKeyDown(Keys.Space))
             {
-                GameEventEngine.Add(new GameEvent(() => { tmpColor = Color.Red; },1.0f));
-                GameEventEngine.Add(new GameEvent(() => { tmpColor = Color.Green; }, 2.0f));
-                GameEventEngine.Add(new GameEvent(() => { tmpColor = Color.Black; }, 3.0f));
-                GameEventEngine.Add(new GameEvent(() => { tmpColor = Color.MediumTurquoise; }, 4.0f));
+                //GameEventEngine.Add(new GameEventDelayed(() => { tmpColor = Color.Red; },1.0f));
+                //GameEventEngine.Add(new GameEventDelayed(() => { tmpColor = Color.Green; }, 2.0f));
+                //GameEventEngine.Add(new GameEventDelayed(() => { tmpColor = Color.Black; }, 3.0f));
+                GameEventEngine.Add(new GameEventCyclic(() => { tmpColor = Color.Red; }, 2,5));
             }
 
             PrevState = state;

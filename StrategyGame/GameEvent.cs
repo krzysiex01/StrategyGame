@@ -30,24 +30,79 @@ namespace StrategyGame
                 {
                     GameEvents.Remove(it);
                 }
-
                 it = next;
             }
         }
     }
 
-    public class GameEvent
+    public interface GameEvent
     {
-        public GameEvent(Action action, double delay)
+        bool Update(GameTime gameTime);
+    }
+
+    public class GameEventCyclic: GameEvent
+    {
+        private Action Action { get; set; }
+        private double TimeRemaining { get; set; }
+        private double TimeLapse { get; }
+        private int RepeatCount { get; set; }
+        private double TimeLapseRemaining { get; set; }
+        private bool IsDelayed { get; set; }
+
+        public GameEventCyclic(Action action, double lapse, int repeat, double delay = 0)
+        {
+            TimeRemaining = delay;
+            TimeLapseRemaining = lapse;
+            IsDelayed = delay != 0 ? true : false;
+            TimeLapse = lapse;
+            Action = action;
+            RepeatCount = repeat;
+        }
+
+        public bool Update(GameTime gameTime)
+        {
+            if (IsDelayed)
+            {
+                TimeRemaining -= gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (TimeRemaining <= 0)
+                {
+                    Action();
+                    RepeatCount--;
+                    IsDelayed = false;
+                }
+                return true;
+            }
+            else
+            {
+                TimeLapseRemaining -= gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (RepeatCount <= 0)
+                {
+                    return false;
+                }
+
+                if (TimeLapseRemaining <= 0)
+                {
+                    Action();
+                    RepeatCount--;
+                    TimeLapseRemaining += TimeLapse; 
+                }
+                return true;
+            }
+        }
+    }
+
+    public class GameEventDelayed: GameEvent
+    {
+        private Action Action { get; set; }
+        private double TimeRemaining { get; set; }
+
+        public GameEventDelayed(Action action, double delay)
         {
             TimeRemaining = delay;
             Action = action;
-            Delay = delay;
         }
-
-        private Action Action { get; set; }
-        private double Delay { get; set; }
-        private double TimeRemaining { get; set; }
 
         public bool Update(GameTime gameTime)
         {
