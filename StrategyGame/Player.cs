@@ -74,9 +74,20 @@ namespace StrategyGame
         {
             ListOfForces.Sort(new Utility.SortByX()); //still can be better
 
+            for (int i = 1; i < ListOfForces.Count; i++)
+            {
+                if(ListOfForces[i - 1].PosX < ListOfForces[i].PosX + ListOfForces[i].Texture.Width*0.2)
+                {
+                    ListOfForces[i].Stop = true;
+                }
+                else
+                {
+                    ListOfForces[i].Stop = false;
+                }
+            }
+
             foreach (Force force in ListOfForces)
             {
-                
                 force.Move(gameTime);
             }
 
