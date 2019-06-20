@@ -70,13 +70,14 @@ namespace StrategyGame
             }
         }
 
-        public void Update(Player opponent, GameTime gameTime)
+        private void DetectCollision(int playerId)
         {
-            ListOfForces.Sort(new Utility.SortByX()); //still can be better
+            if (playerId == 1)
+            {
 
             for (int i = 1; i < ListOfForces.Count; i++)
             {
-                if(ListOfForces[i - 1].PosX < ListOfForces[i].PosX + ListOfForces[i].Texture.Width*0.2)
+                if (ListOfForces[i - 1].PosX < ListOfForces[i].PosX + ListOfForces[i].Texture.Width * 0.2)
                 {
                     ListOfForces[i].Stop = true;
                 }
@@ -85,6 +86,27 @@ namespace StrategyGame
                     ListOfForces[i].Stop = false;
                 }
             }
+            }
+            else
+            {
+                for (int i = 1; i < ListOfForces.Count; i++)
+                {
+                    if (ListOfForces[i - 1].PosX< ListOfForces[i].PosX + ListOfForces[i - 1].Texture.Width * 0.2)
+                    {
+                        ListOfForces[i].Stop = true;
+                    }
+                    else
+                    {
+                        ListOfForces[i].Stop = false;
+                    }
+                }
+            }
+        }
+
+        public void Update(Player opponent, GameTime gameTime)
+        {
+            //ListOfForces.Sort(new Utility.SortByX()); //still can be better
+            DetectCollision(PlayerID);
 
             foreach (Force force in ListOfForces)
             {
