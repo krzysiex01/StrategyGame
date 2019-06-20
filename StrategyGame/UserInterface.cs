@@ -127,7 +127,7 @@ namespace StrategyGame
             {
                 spriteBatch.DrawString(FontPack.BasicFont, "Level: " + Player1.Upgrades[FocusID].ToString(), new Vector2(730, 40), Color.GreenYellow);
                 spriteBatch.DrawString(FontPack.BasicFont, ((ForcesType)FocusID).ToString(), new Vector2(600, 130), Color.Pink);
-                spriteBatch.DrawString(FontPack.BasicFont, "Cost: " + "raczej tanio", new Vector2(600, 170), tmpColor);
+                spriteBatch.DrawString(FontPack.BasicFont, "Cost: " + PurchasePack.ForceCosts[FocusID], new Vector2(600, 170), tmpColor);
             }
             spriteBatch.End();
         }

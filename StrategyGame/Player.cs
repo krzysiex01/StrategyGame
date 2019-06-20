@@ -57,19 +57,24 @@ namespace StrategyGame
         }
     }
 
-    //public static class PurchasePack
-    //{
-    //    public static string[] ForceDescription;
-    //    public static int[] ForceCosts;
+    public static class PurchasePack
+    {
+        public static string[] ForceDescription;
+        public static int[] ForceCosts;
 
-    //    static PurchasePack()
-    //    {
-    //        ForceDescription = new string[6];
-    //        ForceCosts = new int[6];
+        static PurchasePack()
+        {
+            ForceDescription = new string[6];
+            ForceCosts = new int[6];
 
-    //        ForceCosts[0] = ;
-    //    }
-    //}
+            ForceCosts[(int)ForcesType.BazaDronow] = 220;
+            ForceCosts[(int)ForcesType.Dziala] = 240;
+            ForceCosts[(int)ForcesType.Karabin] = 150;
+            ForceCosts[(int)ForcesType.Rakiety] = 180;
+            ForceCosts[(int)ForcesType.Wybuchowy] = 100;
+
+        }
+    }
 
     public class Player
     {
@@ -111,13 +116,13 @@ namespace StrategyGame
 
         public bool AddForces(Force force)
         {
-            if (force.Cost > Cash)
+            if (PurchasePack.ForceCosts[(int)force.Id] > Cash)
             {
                 return false;
             }
             else
             {
-                Cash -= force.Cost;
+                Cash -= PurchasePack.ForceCosts[(int)force.Id];
                 UpgradePack.UpgradeForce(force, Upgrades[(int)force.Id]);
                 ListOfForces.Add(force);
                 return true;

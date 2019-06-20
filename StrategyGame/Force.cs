@@ -16,27 +16,25 @@ namespace StrategyGame
         public double Speed { get; set; }
         public double Armor { get; set; } // Storing as % value - the more the WORSE
         public double AtackPoints { get; set; }
-        public int Cost { get; set; }
         public double Accuracy { get; set; }
         private Random Random { get; } = new Random();
-        public double Ammo { get; set; } // NOT IMPLEMENTED
-        public double AmmoMax { get; set; } // NOT IMPLEMENTED
         public double PosX { get; set; }
         public double PosY { get; set; } // NOT IMPLEMENTED
-
+        public double ReloadTime { get; set; }
+        public bool IsReloading { get; set; }
         public bool Stop { get; set; }
-        public double Reload { get; set; } // IS BEING IMPLEMENTED
-        public double LastShot { get; set; } //IS BEING IMPLEMENTED
+
 
 
         public Texture2D Texture { get; set; }
 
         public virtual void Atack(Force enemyForce, GameTime gameTime)
         {
-            if (gameTime.TotalGameTime.TotalSeconds - LastShot >= Reload)
+            if (!IsReloading)
             {
                 enemyForce.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy));
-                LastShot = gameTime.TotalGameTime.TotalSeconds;
+                IsReloading = true;
+                GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
             }
         }
 

@@ -15,11 +15,10 @@ namespace StrategyGame
             Speed = 40;
             Armor = 0.8;
             AtackPoints = 35;
-            Cost = 180;
             Accuracy = 0.5;
             Texture = texturePack.rocketForce;
-            Reload = 2.0;
-            LastShot = gameTime.TotalGameTime.TotalSeconds;
+            ReloadTime = 2.0;
+            IsReloading = false;
         }
 
         public override void Atack(Force enemyForce,GameTime gameTime)

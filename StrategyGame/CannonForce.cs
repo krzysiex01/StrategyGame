@@ -15,13 +15,10 @@ namespace StrategyGame
             Speed = 20;
             Armor = 0.75;
             AtackPoints = 90;
-            Cost = 240;
             Accuracy = 0.5;
-            Ammo = 500;
-            AmmoMax = 500;
             Texture = texturePack.cannonForce;
-            Reload = 5.0;
-            LastShot = gameTime.TotalGameTime.TotalSeconds;
+            ReloadTime = 5.0;
+            IsReloading = false;
         }
     }
 }

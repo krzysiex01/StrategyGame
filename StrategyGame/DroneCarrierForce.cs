@@ -18,10 +18,7 @@ namespace StrategyGame
             Speed = 40;
             Armor = 0.95;
             AtackPoints = 0;
-            Cost = 220;
             Accuracy = 0.99;
-            Ammo = 0;
-            AmmoMax = 0;
             Texture = texturePack.droneCarrierForce;
             //LastShot = gameTime.TotalGameTime.TotalSeconds;
             //Reload = 0.3;
