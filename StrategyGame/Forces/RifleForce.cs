@@ -9,7 +9,7 @@ namespace StrategyGame
     {
         public RifleForce(TexturePack texturePack, GameTime gameTime)
         {
-            Id = ForcesType.Karabin;
+            Id = ForcesType.RifleForce;
             Hp = 80;
             Range = 3;
             Speed = 60;

@@ -2,7 +2,7 @@
 {
     public enum ForcesType
     {
-        Wybuchowy, Karabin, Rakiety, BazaDronow, Dziala, Drony
+        ExplosiveForce, RifleForce, RocketForce, DroneCarrierForce, CannonForce, Drones
     }
 
     public enum ButtonID

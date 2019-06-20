@@ -12,7 +12,7 @@ namespace StrategyGame
 
         public DroneCarrierForce(TexturePack texturePack, GameTime gameTime)
         {
-            Id = ForcesType.BazaDronow;
+            Id = ForcesType.DroneCarrierForce;
             Hp = 150;
             Range = 2;
             Speed = 40;

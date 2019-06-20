@@ -9,7 +9,7 @@ namespace StrategyGame
     {
         public CannonForce(TexturePack texturePack, GameTime gameTime)
         {
-            Id = ForcesType.Dziala;
+            Id = ForcesType.CannonForce;
             Hp = 200;
             Range = 4;
             Speed = 20;

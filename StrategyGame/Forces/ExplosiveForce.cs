@@ -9,7 +9,7 @@ namespace StrategyGame
     {
         public ExplosiveForce(TexturePack texturePack, GameTime gameTime)
         {
-            Id = ForcesType.Wybuchowy;
+            Id = ForcesType.ExplosiveForce;
             Hp = 25;
             Range = 0;
             Speed = 60;

@@ -17,65 +17,6 @@ namespace StrategyGame
         }
     }
 
-    public static class UpgradePack
-    {
-        public static string[,] UpgradeInfo { get; }
-
-        public static double[,][] UpgradeValues { get; }
-
-        public static int[,] UpgradeCosts { get; }
-
-        static UpgradePack() //TODO: More complex and personalized values, costs and descriptions for each force type
-        {
-            UpgradeInfo = new string[6,10];
-            UpgradeValues = new double[6,10][];
-            UpgradeCosts = new int[6, 10];
-
-            for (int i = 0; i < 6; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    UpgradeValues[i, j] = new double[5];
-                    UpgradeInfo[i, j] = "Increase all 5 basic fields +10%";
-                    UpgradeCosts[i, j] = 500*(j+1);
-
-                    for (int k = 0; k < 5; k++)
-                    {
-                        UpgradeValues[i, j][k] = 1 + j * 0.1;
-                    }
-                }
-            }
-        }
-
-        public static void UpgradeForce(Force force, int upgradeLevel)
-        {
-            force.Hp *= UpgradeValues[(int)force.Id, upgradeLevel][0];
-            force.Armor *= UpgradeValues[(int)force.Id, upgradeLevel][1];
-            force.AtackPoints *= UpgradeValues[(int)force.Id, upgradeLevel][2];
-            force.Accuracy *= UpgradeValues[(int)force.Id, upgradeLevel][3];
-            force.Speed *= UpgradeValues[(int)force.Id, upgradeLevel][4];
-        }
-    }
-
-    public static class PurchasePack
-    {
-        public static string[] ForceDescription;
-        public static int[] ForceCosts;
-
-        static PurchasePack()
-        {
-            ForceDescription = new string[6];
-            ForceCosts = new int[6];
-
-            ForceCosts[(int)ForcesType.BazaDronow] = 220;
-            ForceCosts[(int)ForcesType.Dziala] = 240;
-            ForceCosts[(int)ForcesType.Karabin] = 150;
-            ForceCosts[(int)ForcesType.Rakiety] = 180;
-            ForceCosts[(int)ForcesType.Wybuchowy] = 100;
-
-        }
-    }
-
     public class Player
     {
         public List<Force> ListOfForces { get; set; }
@@ -135,6 +76,7 @@ namespace StrategyGame
 
             foreach (Force force in ListOfForces)
             {
+                
                 force.Move(gameTime);
             }
 
@@ -162,7 +104,7 @@ namespace StrategyGame
 
         public void DestroyNoHp()
         {
-            this.ListOfForces.RemoveAll(s => s.Hp <= 0); //TODO optimize
+            ListOfForces.RemoveAll(s => s.Hp <= 0); //TODO optimize
         }
     }
 }

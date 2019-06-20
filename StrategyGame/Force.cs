@@ -18,15 +18,13 @@ namespace StrategyGame
         public double AtackPoints { get; set; }
         public double Accuracy { get; set; }
         private Random Random { get; } = new Random();
+        public Texture2D Texture { get; set; }
         public double PosX { get; set; }
         public double PosY { get; set; } // NOT IMPLEMENTED
         public double ReloadTime { get; set; }
         public bool IsReloading { get; set; }
         public bool Stop { get; set; }
 
-
-
-        public Texture2D Texture { get; set; }
 
         public virtual void Atack(Force enemyForce, GameTime gameTime)
         {
@@ -56,23 +54,25 @@ namespace StrategyGame
 
         public void Draw(SpriteBatch spriteBatch, int playerID, int boardSize)
         {
-            spriteBatch.Begin();
             switch (playerID)
             {
                 case 1:
                     {
+                        spriteBatch.Begin();
                         spriteBatch.Draw(Texture, new Vector2((int)PosX - (int)(0.2 * (double)Texture.Width), 300), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.FlipHorizontally, 1);
+                        spriteBatch.End();
                         break;
                     }
                 case 2:
                     {
+                        spriteBatch.Begin();
                         spriteBatch.Draw(Texture, new Vector2(boardSize - (int)PosX, 300), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.None, 1);
+                        spriteBatch.End();
                         break;
                     }
                 default:
                     break;
             }
-            spriteBatch.End();
         }
     }
 }

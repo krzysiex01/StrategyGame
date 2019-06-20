@@ -9,7 +9,7 @@ namespace StrategyGame
     {
         public DroneForce(GameTime gameTime)
         {
-            Id = ForcesType.Drony;
+            Id = ForcesType.Drones;
             Hp = 15;
             Range = 2;
             Speed = 40;

@@ -9,7 +9,7 @@ namespace StrategyGame
     {
         public RocketForce(TexturePack texturePack, GameTime gameTime)
         {
-            Id = ForcesType.Rakiety;
+            Id = ForcesType.RocketForce;
             Hp = 120;
             Range = 2;
             Speed = 40;
