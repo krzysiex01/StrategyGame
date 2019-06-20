@@ -16,7 +16,7 @@ namespace StrategyGame
         public Texture2D explosiveButton;
         public Texture2D upgradeButton;
         public Texture2D upgradeButtonFocused;
-
+        public Texture2D background;
 
         public TexturePack(Game game)
         {
@@ -29,6 +29,7 @@ namespace StrategyGame
             explosiveButtonFocused = game.Content.Load<Texture2D>("ExplosiveButtonFocused");
             upgradeButton = game.Content.Load<Texture2D>("UpgradeButton");
             upgradeButtonFocused = game.Content.Load<Texture2D>("UpgradeButtonFocused");
+            background = game.Content.Load<Texture2D>("desert");
 
         }
     }

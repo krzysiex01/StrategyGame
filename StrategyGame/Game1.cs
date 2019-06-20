@@ -105,6 +105,12 @@ namespace StrategyGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             //Drawing code
+            
+            //some temporary background
+            spriteBatch.Begin();
+            spriteBatch.Draw(texturePack.background, new Rectangle(0,0,1000,480),Color.White);
+            spriteBatch.End();
+
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
             userInterface.Draw(spriteBatch);
