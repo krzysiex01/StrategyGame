@@ -7,7 +7,7 @@ namespace StrategyGame
 {
     public class CannonForce : Force
     {
-        public CannonForce(TexturePack texturePack, GameTime gameTime)
+        public CannonForce(GameTime gameTime)
         {
             Id = ForcesType.CannonForce;
             Hp = 200;
@@ -16,7 +16,7 @@ namespace StrategyGame
             Armor = 0.75;
             AtackPoints = 90;
             Accuracy = 0.5;
-            Texture = texturePack.cannonForce;
+            Texture = TexturePack.cannonForce;
             ReloadTime = 5.0;
             IsReloading = false;
         }

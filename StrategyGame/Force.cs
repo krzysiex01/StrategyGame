@@ -30,7 +30,7 @@ namespace StrategyGame
         {
             if (!IsReloading)
             {
-                enemyForce.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy));
+                enemyForce.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy,new Point((int)PosX,(int)PosY), new Point((int)enemyForce.PosX,(int)enemyForce.PosY)));
                 IsReloading = true;
                 GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
             }

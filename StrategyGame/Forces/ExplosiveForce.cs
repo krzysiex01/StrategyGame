@@ -7,7 +7,7 @@ namespace StrategyGame
 {
     public class ExplosiveForce : Force
     {
-        public ExplosiveForce(TexturePack texturePack, GameTime gameTime)
+        public ExplosiveForce(GameTime gameTime)
         {
             Id = ForcesType.ExplosiveForce;
             Hp = 25;
@@ -16,7 +16,7 @@ namespace StrategyGame
             Armor = 0.98;
             AtackPoints = 100;
             Accuracy = 1.0;
-            Texture = texturePack.explosiveForce;
+            Texture = TexturePack.explosiveForce;
             ReloadTime = 0;
             IsReloading = false;
         }

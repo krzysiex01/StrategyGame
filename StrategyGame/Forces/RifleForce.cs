@@ -7,7 +7,7 @@ namespace StrategyGame
 {
     public class RifleForce : Force
     {
-        public RifleForce(TexturePack texturePack, GameTime gameTime)
+        public RifleForce(GameTime gameTime)
         {
             Id = ForcesType.RifleForce;
             Hp = 80;
@@ -16,7 +16,7 @@ namespace StrategyGame
             Armor = 0.9;
             AtackPoints = 2;
             Accuracy = 0.9;
-            Texture = texturePack.rifleForce;
+            Texture = TexturePack.rifleForce;
             ReloadTime = 0.1;
             IsReloading = false;
         }

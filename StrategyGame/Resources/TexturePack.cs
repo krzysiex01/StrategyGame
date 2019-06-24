@@ -5,20 +5,22 @@ using Microsoft.Xna.Framework.Input;
 
 namespace StrategyGame
 {
-    public class TexturePack
-    {
-        public Texture2D cannonForce;
-        public Texture2D droneCarrierForce;
-        public Texture2D explosiveForce;
-        public Texture2D rocketForce;
-        public Texture2D rifleForce;
-        public Texture2D explosiveButtonFocused;
-        public Texture2D explosiveButton;
-        public Texture2D upgradeButton;
-        public Texture2D upgradeButtonFocused;
-        public Texture2D background;
 
-        public TexturePack(Game game)
+    public static class TexturePack
+    {
+        public static Texture2D cannonForce;
+        public static Texture2D droneCarrierForce;
+        public static Texture2D explosiveForce;
+        public static Texture2D rocketForce;
+        public static Texture2D rifleForce;
+        public static Texture2D explosiveButtonFocused;
+        public static Texture2D explosiveButton;
+        public static Texture2D upgradeButton;
+        public static Texture2D upgradeButtonFocused;
+        public static Texture2D background;
+        public static Texture2D smoke;
+
+        public static void TexturePackLoad(Game game)
         {
             cannonForce = game.Content.Load<Texture2D>("dziala");
             droneCarrierForce = game.Content.Load<Texture2D>("drony");
@@ -30,6 +32,7 @@ namespace StrategyGame
             upgradeButton = game.Content.Load<Texture2D>("UpgradeButton");
             upgradeButtonFocused = game.Content.Load<Texture2D>("UpgradeButtonFocused");
             background = game.Content.Load<Texture2D>("desert");
+            smoke = game.Content.Load<Texture2D>("SmokeTrail");
 
         }
     }

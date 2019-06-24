@@ -7,7 +7,7 @@ namespace StrategyGame
 {
     public class RocketForce : Force
     {
-        public RocketForce(TexturePack texturePack, GameTime gameTime)
+        public RocketForce(GameTime gameTime)
         {
             Id = ForcesType.RocketForce;
             Hp = 120;
@@ -16,7 +16,7 @@ namespace StrategyGame
             Armor = 0.8;
             AtackPoints = 35;
             Accuracy = 0.5;
-            Texture = texturePack.rocketForce;
+            Texture = TexturePack.rocketForce;
             ReloadTime = 2.0;
             IsReloading = false;
         }

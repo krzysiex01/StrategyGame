@@ -10,7 +10,7 @@ namespace StrategyGame
     {
         List<DroneForce> drones { get; set; }
 
-        public DroneCarrierForce(TexturePack texturePack, GameTime gameTime)
+        public DroneCarrierForce(GameTime gameTime)
         {
             Id = ForcesType.DroneCarrierForce;
             Hp = 150;
@@ -19,7 +19,7 @@ namespace StrategyGame
             Armor = 0.95;
             AtackPoints = 0;
             Accuracy = 0.99;
-            Texture = texturePack.droneCarrierForce;
+            Texture = TexturePack.droneCarrierForce;
             //LastShot = gameTime.TotalGameTime.TotalSeconds;
             //Reload = 0.3;
             drones = new List<DroneForce>();

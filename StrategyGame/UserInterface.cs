@@ -69,17 +69,15 @@ namespace StrategyGame
         Button[] Buttons { get; set; }
         Player Player1 { get; set; }
         Player Player2 { get; set; }
-        TexturePack TexturePack { get; set; }
         FontPack FontPack { get; set; }
         KeyboardState PrevState { get; set; }
 
         Color tmpColor = Color.Green; // testing engine - changing color
 
-        public UserInterface(Player player1, Player player2, TexturePack texturePack,FontPack fontPack)
+        public UserInterface(Player player1, Player player2,FontPack fontPack)
         {
             FocusID = 0;
             NumberOfButtons = 5;
-            TexturePack = texturePack;
             FontPack = fontPack;
             Player1 = player1;
             Player2 = player2;
@@ -173,27 +171,27 @@ namespace StrategyGame
                     {
                         case ButtonID.cannonForceButton:
                             {
-                                Player1.AddForces(new CannonForce(TexturePack, gameTime));
+                                Player1.AddForces(new CannonForce(gameTime));
                                 break;
                             }
                         case ButtonID.explosiveForceButton:
                             {
-                                Player1.AddForces(new ExplosiveForce(TexturePack, gameTime));
+                                Player1.AddForces(new ExplosiveForce(gameTime));
                                 break;
                             }
                         case ButtonID.rifleForceButton:
                             {
-                                Player1.AddForces(new RifleForce(TexturePack, gameTime));
+                                Player1.AddForces(new RifleForce(gameTime));
                                 break;
                             }
                         case ButtonID.rocketForceButton:
                             {
-                                Player1.AddForces(new RocketForce(TexturePack, gameTime));
+                                Player1.AddForces(new RocketForce(gameTime));
                                 break;
                             }
                         case ButtonID.droneCarrierForceButton:
                             {
-                                Player1.AddForces(new DroneCarrierForce(TexturePack, gameTime));
+                                Player1.AddForces(new DroneCarrierForce(gameTime));
                                 break;
                             }
                         default:
@@ -208,23 +206,23 @@ namespace StrategyGame
             //TEMP ADDING ENEMY
             if (state.IsKeyDown(Keys.NumPad1) & !PrevState.IsKeyDown(Keys.NumPad1))
             {
-                Player2.AddForces(new CannonForce(TexturePack, gameTime));
+                Player2.AddForces(new CannonForce(gameTime));
             }
             if (state.IsKeyDown(Keys.NumPad2) & !PrevState.IsKeyDown(Keys.NumPad2))
             {
-                Player2.AddForces(new ExplosiveForce(TexturePack, gameTime));
+                Player2.AddForces(new ExplosiveForce(gameTime));
             }
             if (state.IsKeyDown(Keys.NumPad3) & !PrevState.IsKeyDown(Keys.NumPad3))
             {
-                Player2.AddForces(new DroneCarrierForce(TexturePack, gameTime));
+                Player2.AddForces(new DroneCarrierForce(gameTime));
             }
             if (state.IsKeyDown(Keys.NumPad4) & !PrevState.IsKeyDown(Keys.NumPad4))
             {
-                Player2.AddForces(new RocketForce(TexturePack, gameTime));
+                Player2.AddForces(new RocketForce(gameTime));
             }
             if (state.IsKeyDown(Keys.NumPad5) & !PrevState.IsKeyDown(Keys.NumPad5))
             {
-                Player2.AddForces(new RifleForce(TexturePack, gameTime));
+                Player2.AddForces(new RifleForce(gameTime));
             }
             //testing engine
             if (state.IsKeyDown(Keys.Space) & !PrevState.IsKeyDown(Keys.Space))

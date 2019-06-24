@@ -15,7 +15,6 @@ namespace StrategyGame
         public Player player1;
         public Player player2;
         private UserInterface userInterface;
-        private TexturePack texturePack;
         private FontPack fontPack;
         public int Size { get; set; }
         public int Fps { get; set; }
@@ -43,9 +42,9 @@ namespace StrategyGame
         {
             player1 = new Player(Size,1);
             player2 = new Player(Size,2);
-            texturePack = new TexturePack(this);
+            TexturePack.TexturePackLoad(this);
             fontPack = new FontPack(this);
-            userInterface = new UserInterface(player1,player2,texturePack,fontPack);
+            userInterface = new UserInterface(player1,player2,fontPack);
 
             base.Initialize();
         }
@@ -95,7 +94,7 @@ namespace StrategyGame
             player2.DestroyNoHp();
 
             base.Update(gameTime);
-        }
+        }   
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -108,7 +107,7 @@ namespace StrategyGame
             
             //some temporary background
             spriteBatch.Begin();
-            spriteBatch.Draw(texturePack.background, new Rectangle(0,0,1000,480),Color.White);
+            spriteBatch.Draw(TexturePack.background, new Rectangle(0,0,1000,480),Color.White);
             spriteBatch.End();
 
             player1.Draw(spriteBatch);
