@@ -9,7 +9,7 @@ namespace StrategyGame
 {
     public class Base
     {
-        public double HP { get; set; }
+        public double Hp { get; set; }
 
         public int PlayerID { get; set; }
 
@@ -22,10 +22,18 @@ namespace StrategyGame
         public Base(int id)
         {
             PlayerID = id;
-            HP = 1000.0;
-            Armor = 1;
-            PosX = id * 1000.0;
-            PosY = 350;
+            Hp = 1000.0;
+            Armor = 1.0;
+            PosX = 0.0;
+            PosY = 350.0;
+        }
+
+        public void Defend(Missile missile)
+        {
+            if (missile.IsAccurate)
+            {
+                Hp -= missile.Damage * Armor;
+            }
         }
     }
 }

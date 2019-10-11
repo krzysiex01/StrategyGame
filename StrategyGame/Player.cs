@@ -25,6 +25,8 @@ namespace StrategyGame
         public int[] Upgrades { get; set; }
         public int PlayerID { get; set; }
 
+        public Base PlayerBase;
+
         public Player(int size, int id)
         {
             ListOfForces = new List<Force>();
@@ -32,6 +34,7 @@ namespace StrategyGame
             Cash = 100000;
             BoardSize = size;
             PlayerID = id;
+            PlayerBase = new Base(id);
         }
 
         public bool Upgrade(ForcesType forceType)
@@ -122,6 +125,20 @@ namespace StrategyGame
                     {
                         force.Stop = true;
                         force.Atack(opponent.ListOfForces[0], gameTime);
+                    }
+                }
+            }
+
+            if (opponent.ListOfForces.Count == 0)
+            {
+                foreach (Force force in ListOfForces)
+                {
+                    force.Stop = false;
+                    if (force.PosX + force.Range * 100.0 >= (double)BoardSize)
+                    {
+                        force.Stop = true;
+                        force.Atack(opponent, gameTime);
+                        
                     }
                 }
             }
