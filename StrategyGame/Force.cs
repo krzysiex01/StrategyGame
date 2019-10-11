@@ -20,7 +20,7 @@ namespace StrategyGame
         private Random Random { get; } = new Random();
         public Texture2D Texture { get; set; }
         public double PosX { get; set; }
-        public double PosY { get; set; } // NOT IMPLEMENTED
+        public static double PosY { get; set; } = 350;
         public double ReloadTime { get; set; }
         public bool IsReloading { get; set; }
         public bool Stop { get; set; }
@@ -30,7 +30,7 @@ namespace StrategyGame
         {
             if (!IsReloading)
             {
-                enemyForce.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy,new Point((int)PosX,(int)PosY), new Point((int)enemyForce.PosX,(int)enemyForce.PosY)));
+                enemyForce.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy,new Point((int)PosX,(int)PosY), new Point((int)enemyForce.PosX,(int)Force.PosY)));
                 IsReloading = true;
                 GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
             }
