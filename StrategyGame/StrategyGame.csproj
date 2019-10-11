@@ -42,6 +42,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Base.cs" />
     <Compile Include="Forces\CannonForce.cs" />
     <Compile Include="Forces\DroneCarrierForce.cs" />
     <Compile Include="Forces\DroneForce.cs" />

@@ -20,7 +20,7 @@ namespace StrategyGame
         private Random Random { get; } = new Random();
         public Texture2D Texture { get; set; }
         public double PosX { get; set; }
-        public double PosY { get; set; } // NOT IMPLEMENTED
+        public static double PosY { get; set; } = 350;
         public double ReloadTime { get; set; }
         public bool IsReloading { get; set; }
         public bool Stop { get; set; }
@@ -30,8 +30,17 @@ namespace StrategyGame
         {
             if (!IsReloading)
             {
-                enemyForce.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy,new Point((int)PosX,(int)PosY), new Point((int)enemyForce.PosX,(int)enemyForce.PosY)));
-                GameEffectsEngine.Add(new Missile(AtackPoints, Random.NextDouble() <= Accuracy, new Point((int)PosX, (int)PosY), new Point((int)enemyForce.PosX, (int)enemyForce.PosY)));
+                enemyForce.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy,new Point((int)PosX,(int)Force.PosY), new Point((int)enemyForce.PosX,(int)Force.PosY)));
+                IsReloading = true;
+                GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
+            }
+        }
+
+        public virtual void Atack(Player player, GameTime gameTime)
+        {  
+            if (!IsReloading)
+            {
+                player.PlayerBase.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy, new Point((int)PosX, (int)Force.PosY), new Point((int)(2*(500-player.PlayerBase.PosX)*((double)player.PlayerID-1.5) + 500), (int)Force.PosY)));
                 IsReloading = true;
                 GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
             }
@@ -60,14 +69,14 @@ namespace StrategyGame
                 case 1:
                     {
                         spriteBatch.Begin();
-                        spriteBatch.Draw(Texture, new Vector2((int)PosX, 350), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.None, 1);
+                        spriteBatch.Draw(Texture, new Vector2((int)PosX, (int)PosY), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.None, 1);
                         spriteBatch.End();
                         break;
                     }
                 case 2:
                     {
                         spriteBatch.Begin();
-                        spriteBatch.Draw(Texture, new Vector2(boardSize - (int)PosX, 350), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.FlipHorizontally, 1);
+                        spriteBatch.Draw(Texture, new Vector2(boardSize - (int)PosX, (int)PosY), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.FlipHorizontally, 1);
                         spriteBatch.End();
                         break;
                     }
