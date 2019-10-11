@@ -74,7 +74,7 @@ namespace StrategyGame
 
         Color tmpColor = Color.Green; // testing engine - changing color
 
-        public UserInterface(Player player1, Player player2,FontPack fontPack)
+        public UserInterface(Player player1, Player player2, FontPack fontPack)
         {
             FocusID = 0;
             NumberOfButtons = 5;
@@ -117,8 +117,8 @@ namespace StrategyGame
             spriteBatch.DrawString(FontPack.BasicFont, Player1.Cash.ToString() + '$', new Vector2(600, 40), Color.Black);
             if (UpgradeFocus)
             {
-                spriteBatch.DrawString(FontPack.BasicFont,"Level: " + Player1.Upgrades[FocusID].ToString(), new Vector2(730, 40), Color.GreenYellow);
-                spriteBatch.DrawString(FontPack.BasicFont,UpgradePack.UpgradeInfo[FocusID, Player1.Upgrades[FocusID]], new Vector2(600, 130), Color.Pink);
+                spriteBatch.DrawString(FontPack.BasicFont, "Level: " + Player1.Upgrades[FocusID].ToString(), new Vector2(730, 40), Color.GreenYellow);
+                spriteBatch.DrawString(FontPack.BasicFont, UpgradePack.UpgradeInfo[FocusID, Player1.Upgrades[FocusID]], new Vector2(600, 130), Color.Pink);
                 spriteBatch.DrawString(FontPack.BasicFont, "Upgrade cost: " + UpgradePack.UpgradeCosts[FocusID, Player1.Upgrades[FocusID]].ToString() + "$", new Vector2(600, 170), Color.Pink);
             }
             else
@@ -230,7 +230,7 @@ namespace StrategyGame
                 //GameEventEngine.Add(new GameEventDelayed(() => { tmpColor = Color.Red; },1.0f));
                 //GameEventEngine.Add(new GameEventDelayed(() => { tmpColor = Color.Green; }, 2.0f));
                 //GameEventEngine.Add(new GameEventDelayed(() => { tmpColor = Color.Black; }, 3.0f));
-                GameEventEngine.Add(new GameEventCyclic(() => { tmpColor = Color.Red; }, 2,5));
+                //GameEventEngine.Add(new GameEventCyclic(() => { tmpColor = Color.Red; }, 2, 5));
             }
 
             PrevState = state;
