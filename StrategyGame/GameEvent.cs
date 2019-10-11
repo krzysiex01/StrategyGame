@@ -11,9 +11,9 @@ namespace StrategyGame
 {
     public static class GameEventEngine
     {
-        private static LinkedList<GameEvent> GameEvents = new LinkedList<GameEvent>();
+        private static LinkedList<IGameEvent> GameEvents = new LinkedList<IGameEvent>();
 
-        public static void Add(GameEvent gameEvent)
+        public static void Add(IGameEvent gameEvent)
         {
             GameEvents.AddLast(gameEvent);
         }
@@ -35,12 +35,12 @@ namespace StrategyGame
         }
     }
 
-    public interface GameEvent
+    public interface IGameEvent
     {
         bool Update(GameTime gameTime);
     }
 
-    public class GameEventCyclic: GameEvent
+    public class GameEventCyclic: IGameEvent
     {
         private Action Action { get; set; }
         private double TimeRemaining { get; set; }
@@ -93,7 +93,7 @@ namespace StrategyGame
         }
     }
 
-    public class GameEventDelayed: GameEvent
+    public class GameEventDelayed: IGameEvent
     {
         private Action Action { get; set; }
         private double TimeRemaining { get; set; }

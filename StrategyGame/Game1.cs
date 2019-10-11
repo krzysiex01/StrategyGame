@@ -83,6 +83,7 @@ namespace StrategyGame
                 Exit();
 
             GameEventEngine.Update(gameTime);
+            GameEffectsEngine.Update(gameTime);
 
             //Interface class update
             userInterface.Update(gameTime);
@@ -113,7 +114,9 @@ namespace StrategyGame
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
             userInterface.Draw(spriteBatch);
-            
+            GameEffectsEngine.Draw(spriteBatch);
+
+
             base.Draw(gameTime);
         }
     }
