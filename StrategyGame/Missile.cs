@@ -14,7 +14,7 @@ namespace StrategyGame
             From = from;
             To = to;
             CurrentPosition = From;
-            Direction = Math.Abs(To.X-From.X);
+            Direction = Math.Sign(To.X-From.X);
         }
 
         public double Damage { get; set; }
