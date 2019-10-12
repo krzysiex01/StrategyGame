@@ -26,23 +26,29 @@ namespace StrategyGame
         public bool Stop { get; set; }
 
 
-        public virtual void Atack(Force enemyForce, GameTime gameTime)
+        public virtual void Atack(Player player, Force enemyForce, GameTime gameTime)
         {
             if (!IsReloading)
             {
-                enemyForce.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy,new Point((int)PosX,(int)Force.PosY), new Point((int)enemyForce.PosX,(int)Force.PosY)));
-                IsReloading = true;
+                Missile missile = new Missile(AtackPoints, Random.NextDouble() <= Accuracy,
+                    new Point((int)PosX, (int)Force.PosY), new Point((int)(2 * (500 - enemyForce.PosX) * ((double)player.PlayerID - 1.5) + 500), (int)Force.PosY));
+                GameEffectsEngine.Add(missile);
                 GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
+                enemyForce.Defend(missile);
+                IsReloading = true;
             }
         }
 
         public virtual void Atack(Player player, GameTime gameTime)
-        {  
+        {
             if (!IsReloading)
             {
-                player.PlayerBase.Defend(new Missile(AtackPoints, Random.NextDouble() <= Accuracy, new Point((int)PosX, (int)Force.PosY), new Point((int)(2*(500-player.PlayerBase.PosX)*((double)player.PlayerID-1.5) + 500), (int)Force.PosY)));
-                IsReloading = true;
+                Missile missile = new Missile(AtackPoints, Random.NextDouble() <= Accuracy,
+                    new Point((int)PosX, (int)Force.PosY), new Point((int)(2 * (500 - player.PlayerBase.PosX) * ((double)player.PlayerID - 1.5) + 500), (int)Force.PosY));
+                GameEffectsEngine.Add(missile);
                 GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
+                player.PlayerBase.Defend(missile);
+                IsReloading = true;
             }
         }
 

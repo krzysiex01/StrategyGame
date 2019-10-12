@@ -21,9 +21,9 @@ namespace StrategyGame
             IsReloading = false;
         }
 
-        public override void Atack(Force enemyForce,GameTime gameTime)
+        public override void Atack(Player player, Force enemyForce,GameTime gameTime)
         {
-            base.Atack(enemyForce, gameTime);
+            base.Atack(player,enemyForce, gameTime);
             Hp = 0;
         }
     }

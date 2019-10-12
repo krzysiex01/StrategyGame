@@ -19,6 +19,7 @@ namespace StrategyGame
         public static Texture2D upgradeButtonFocused;
         public static Texture2D background;
         public static Texture2D smoke;
+        public static GraphicsDevice graphicsDevice;
 
         public static void TexturePackLoad(Game game)
         {
@@ -33,7 +34,7 @@ namespace StrategyGame
             upgradeButtonFocused = game.Content.Load<Texture2D>("UpgradeButtonFocused");
             background = game.Content.Load<Texture2D>("desert");
             smoke = game.Content.Load<Texture2D>("SmokeTrail");
-
+            graphicsDevice = game.GraphicsDevice;
         }
     }
 

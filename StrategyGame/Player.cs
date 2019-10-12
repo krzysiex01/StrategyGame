@@ -121,10 +121,10 @@ namespace StrategyGame
                 force.Stop = false;
                 if (opponent.ListOfForces.Count > 0)
                 {
-                    if (force.PosX + opponent.ListOfForces[0].PosX + force.Range * 100.0 >= (double)BoardSize)
+                    if (force.PosX + opponent.ListOfForces[0].PosX + force.Range * 100.0 >= BoardSize)
                     {
                         force.Stop = true;
-                        force.Atack(opponent.ListOfForces[0], gameTime);
+                        force.Atack(opponent,opponent.ListOfForces[0], gameTime);
                     }
                 }
             }
@@ -134,7 +134,7 @@ namespace StrategyGame
                 foreach (Force force in ListOfForces)
                 {
                     force.Stop = false;
-                    if (force.PosX + force.Range * 100.0 >= (double)BoardSize)
+                    if (force.PosX + force.Range * 100.0 >= BoardSize)
                     {
                         force.Stop = true;
                         force.Atack(opponent, gameTime);

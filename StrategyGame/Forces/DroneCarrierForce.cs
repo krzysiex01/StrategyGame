@@ -31,11 +31,11 @@ namespace StrategyGame
 
         }
 
-        public override void Atack(Force enemyForce,GameTime gameTime)
+        public override void Atack(Player player, Force enemyForce,GameTime gameTime)
         {
             foreach (DroneForce drone in drones)
             {
-                drone.Atack(enemyForce, gameTime);
+                drone.Atack(player,enemyForce, gameTime);
             }
         }
 

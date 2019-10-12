@@ -26,14 +26,21 @@ namespace StrategyGame
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            Texture2D rect = new Texture2D(TexturePack.graphicsDevice, 10, 10);
+
+            Color[] data = new Color[10 * 10];
+            for (int i = 0; i < data.Length; ++i) data[i] = Color.Black;
+            rect.SetData(data);
+
+            Vector2 coor = new Vector2(CurrentPosition.X, CurrentPosition.Y);
             spriteBatch.Begin();
-            spriteBatch.Draw(TexturePack.smoke, new Rectangle(CurrentPosition.X, CurrentPosition.Y, TexturePack.smoke.Width, TexturePack.smoke.Height), Color.White);
+            spriteBatch.Draw(rect,coor,Color.White);
             spriteBatch.End();
         }
 
         public bool Update(GameTime gameTime)
         {
-            CurrentPosition = new Point((int)(CurrentPosition.X + Direction * 20 * gameTime.ElapsedGameTime.TotalSeconds),CurrentPosition.Y);
+            CurrentPosition = new Point((int)(CurrentPosition.X + Direction * 5 * gameTime.ElapsedGameTime.TotalSeconds),CurrentPosition.Y);
 
             if (Math.Abs(To.X - CurrentPosition.X) < 10)
             {
