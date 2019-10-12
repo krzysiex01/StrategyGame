@@ -31,7 +31,7 @@ namespace StrategyGame
             if (!IsReloading)
             {
                 Missile missile = new Missile(AtackPoints, Random.NextDouble() <= Accuracy,
-                    new Point((int)PosX, (int)Force.PosY), new Point((int)(2 * (500 - enemyForce.PosX) * ((double)player.PlayerID - 1.5) + 500), (int)Force.PosY));
+                    new Point((int)(2 * (500 - PosX) * (1.5 - (double)player.PlayerID) + 500), (int)Force.PosY), new Point((int)(2 * (500 - enemyForce.PosX) * ((double)player.PlayerID-1.5) + 500), (int)Force.PosY));
                 GameEffectsEngine.Add(missile);
                 GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
                 enemyForce.Defend(missile);
@@ -44,7 +44,7 @@ namespace StrategyGame
             if (!IsReloading)
             {
                 Missile missile = new Missile(AtackPoints, Random.NextDouble() <= Accuracy,
-                    new Point((int)PosX, (int)Force.PosY), new Point((int)(2 * (500 - player.PlayerBase.PosX) * ((double)player.PlayerID - 1.5) + 500), (int)Force.PosY));
+                    new Point((int)(2 * (500 - PosX) * (1.5 - (double)player.PlayerID) + 500), (int)Force.PosY), new Point((int)(2 * (500 - player.PlayerBase.PosX) * ((double)player.PlayerID-1.5) + 500), (int)Force.PosY));
                 GameEffectsEngine.Add(missile);
                 GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
                 player.PlayerBase.Defend(missile);
