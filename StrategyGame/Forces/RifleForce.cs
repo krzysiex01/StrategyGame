@@ -11,7 +11,7 @@ namespace StrategyGame
         {
             Id = ForcesType.RifleForce;
             Hp = 80;
-            Range = 3;
+            Range = 2;
             Speed = 60;
             Armor = 0.9;
             AtackPoints = 2;

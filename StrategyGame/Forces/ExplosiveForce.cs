@@ -26,5 +26,11 @@ namespace StrategyGame
             base.Atack(player,enemyForce, gameTime);
             Hp = 0;
         }
+
+        public override void Atack(Player player, GameTime gameTime)
+        {
+            base.Atack(player, gameTime);
+            Hp = 0;
+        }
     }
 }

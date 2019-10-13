@@ -40,7 +40,7 @@ namespace StrategyGame
 
         public bool Update(GameTime gameTime)
         {
-            CurrentPosition = new Point((int)(CurrentPosition.X + Direction * 5 * gameTime.ElapsedGameTime.TotalSeconds),CurrentPosition.Y);
+            CurrentPosition = new Point((int)(CurrentPosition.X + Direction * 500 * gameTime.ElapsedGameTime.TotalSeconds),CurrentPosition.Y);
 
             if (Math.Abs(To.X - CurrentPosition.X) < 10)
             {
