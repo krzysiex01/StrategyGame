@@ -51,7 +51,7 @@ namespace StrategyGame
                 return false;
             }
 
-            int cost = UpgradePack.UpgradeCosts[(int)forceType, Upgrades[(int)forceType]+1];
+            int cost = UpgradePack.UpgradeCosts[(int)forceType, Upgrades[(int)forceType]];
 
             if (cost > Cash)
             {
@@ -167,6 +167,8 @@ namespace StrategyGame
                 if (force.Hp <= 0)
                 {
                     opponent.Cash += CashPack.ForceCashReceived[(int)force.Id];
+                    Explosion explosion = new Explosion(force,this);
+                    GameEffectsEngine.Add(explosion);
                     ListOfForces.RemoveAt(0);
                 }
             }
