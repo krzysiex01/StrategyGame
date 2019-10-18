@@ -28,12 +28,13 @@ namespace StrategyGame
             PosY = 350.0;
         }
 
-        public void Defend(Missile missile)
+        public void Defend(MissileBase missileBase)
         {
-            if (missile.IsAccurate)
+            if (missileBase.IsAccurate)
             {
-                Hp -= missile.Damage * Armor;
+                Hp -= missileBase.Damage * Armor;
             }
         }
+
     }
 }
