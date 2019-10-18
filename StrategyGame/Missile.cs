@@ -45,7 +45,7 @@ namespace StrategyGame
         {
             CurrentPosition = new Point((int)(CurrentPosition.X + Direction * 500 * gameTime.ElapsedGameTime.TotalSeconds),CurrentPosition.Y);
 
-            if (Math.Abs(To.X - CurrentPosition.X) < 10)
+            if ((To.X - CurrentPosition.X)*Direction < -50)
             {
                 EnemyForce.Defend(this);
                 return false;
