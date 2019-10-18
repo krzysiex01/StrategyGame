@@ -11,7 +11,7 @@ namespace StrategyGame
         {
             Id = ForcesType.RocketForce;
             Hp = 120;
-            Range = 2;
+            Range = 4;
             Speed = 40;
             Armor = 0.8;
             AtackPoints = 35;

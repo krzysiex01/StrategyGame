@@ -30,11 +30,13 @@ namespace StrategyGame
         {
             if (!IsReloading)
             {
-                Missile missile = new Missile(AtackPoints, Random.NextDouble() <= Accuracy,
-                    new Point((int)(2 * (500 - PosX) * (1.5 - (double)player.PlayerID) + 500), (int)Force.PosY), new Point((int)(2 * (500 - enemyForce.PosX) * ((double)player.PlayerID-1.5) + 500), (int)Force.PosY));
+                Missile missile = new Missile(enemyForce, AtackPoints, Random.NextDouble() <= Accuracy,
+                    new Point((int)(2 * (500 - PosX) * (1.5 - (double)player.PlayerID) + 500),
+                    (int)Force.PosY + (int)(170*0.2)),
+                    new Point((int)(2 * (500 - enemyForce.PosX) * ((double)player.PlayerID-1.5) + 500),
+                    (int)Force.PosY + (int)(170 * 0.2)));
                 GameEffectsEngine.Add(missile);
                 GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
-                enemyForce.Defend(missile);
                 IsReloading = true;
             }
         }
@@ -43,11 +45,13 @@ namespace StrategyGame
         {
             if (!IsReloading)
             {
-                Missile missile = new Missile(AtackPoints, Random.NextDouble() <= Accuracy,
-                    new Point((int)(2 * (500 - PosX) * (1.5 - (double)player.PlayerID) + 500), (int)Force.PosY), new Point((int)(2 * (500 - player.PlayerBase.PosX) * ((double)player.PlayerID-1.5) + 500), (int)Force.PosY));
+                MissileBase missile = new MissileBase(player, AtackPoints, Random.NextDouble() <= Accuracy,
+                    new Point((int)(2 * (500 - PosX) * (1.5 - (double)player.PlayerID) + 500),
+                    (int)Force.PosY + (int)(170 * 0.2)),
+                    new Point((int)(2 * (500 - player.PlayerBase.PosX) * ((double)player.PlayerID-1.5) + 500),
+                    (int)Force.PosY + (int)(170 * 0.2)));
                 GameEffectsEngine.Add(missile);
                 GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
-                player.PlayerBase.Defend(missile);
                 IsReloading = true;
             }
         }
@@ -75,7 +79,7 @@ namespace StrategyGame
                 case 1:
                     {
                         spriteBatch.Begin();
-                        spriteBatch.Draw(Texture, new Vector2((int)PosX, (int)PosY), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.None, 1);
+                        spriteBatch.Draw(Texture, new Vector2((int)PosX-(int)(600*0.2), (int)PosY), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.None, 1);
                         spriteBatch.End();
                         break;
                     }
