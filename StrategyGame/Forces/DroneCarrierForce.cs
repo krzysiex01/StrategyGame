@@ -11,7 +11,7 @@ namespace StrategyGame
         public DroneCarrierForce(GameTime gameTime)
         {
             Id = ForcesType.DroneCarrierForce;
-            Hp = 150;
+            Hp = ForceParametrsPack.Hp[(int)Id];
             Range = 1;
             Speed = 40;
             Armor = 0.95;

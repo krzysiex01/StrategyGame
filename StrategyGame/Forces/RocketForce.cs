@@ -10,7 +10,7 @@ namespace StrategyGame
         public RocketForce(GameTime gameTime)
         {
             Id = ForcesType.RocketForce;
-            Hp = 120;
+            Hp = ForceParametrsPack.Hp[(int)Id];
             Range = 4;
             Speed = 40;
             Armor = 0.8;

@@ -10,7 +10,7 @@ namespace StrategyGame
         public CannonForce(GameTime gameTime)
         {
             Id = ForcesType.CannonForce;
-            Hp = 200;
+            Hp = ForceParametrsPack.Hp[(int)Id];
             Range = 4;
             Speed = 20;
             Armor = 0.75;

@@ -31,8 +31,8 @@ namespace StrategyGame
             {
                 Missile missile = new Missile(enemyForce, AtackPoints, Random.NextDouble() <= Accuracy,
                     new Point((int)(2 * (500 - PosX) * (1.5 - (double)player.PlayerID) + 500),
-                    (int)Force.PosY + (int)(170*0.2)),
-                    new Point((int)(2 * (500 - enemyForce.PosX) * ((double)player.PlayerID-1.5) + 500),
+                    (int)Force.PosY + (int)(170 * 0.2)),
+                    new Point((int)(2 * (500 - enemyForce.PosX) * ((double)player.PlayerID - 1.5) + 500),
                     (int)Force.PosY + (int)(170 * 0.2)));
                 GameEffectsEngine.Add(missile);
                 GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
@@ -47,7 +47,7 @@ namespace StrategyGame
                 MissileBase missile = new MissileBase(player, AtackPoints, Random.NextDouble() <= Accuracy,
                     new Point((int)(2 * (500 - PosX) * (1.5 - (double)player.PlayerID) + 500),
                     (int)Force.PosY + (int)(170 * 0.2)),
-                    new Point((int)(2 * (500 - player.PlayerBase.PosX) * ((double)player.PlayerID-1.5) + 500),
+                    new Point((int)(2 * (500 - player.PlayerBase.PosX) * ((double)player.PlayerID - 1.5) + 500),
                     (int)Force.PosY + (int)(170 * 0.2)));
                 GameEffectsEngine.Add(missile);
                 GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
@@ -77,13 +77,23 @@ namespace StrategyGame
             {
                 case 1:
                     {
+                        HpBar.Draw(spriteBatch,
+                new Vector2((int)(2 * (500 - PosX) * ((double)playerID - 1.5) + 500 - (int)(600 * 0.2)),
+                    (int)Force.PosY - 15),
+                (int)(Texture.Width * 0.02),
+                Hp / ForceParametrsPack.Hp[(int)Id]);
                         spriteBatch.Begin();
-                        spriteBatch.Draw(Texture, new Vector2((int)PosX-(int)(600*0.2), (int)PosY), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.None, 1);
+                        spriteBatch.Draw(Texture, new Vector2((int)PosX - (int)(600 * 0.2), (int)PosY), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.None, 1);
                         spriteBatch.End();
                         break;
                     }
                 case 2:
                     {
+                        HpBar.Draw(spriteBatch,
+                new Vector2((int)(2 * (500 - PosX) * ((double)playerID - 1.5) + 500),
+                    (int)Force.PosY - 15),
+                (int)(Texture.Width * 0.02),
+                Hp / ForceParametrsPack.Hp[(int)Id]);
                         spriteBatch.Begin();
                         spriteBatch.Draw(Texture, new Vector2(boardSize - (int)PosX, (int)PosY), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.FlipHorizontally, 1);
                         spriteBatch.End();

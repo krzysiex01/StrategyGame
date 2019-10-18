@@ -10,7 +10,7 @@ namespace StrategyGame
         public RifleForce(GameTime gameTime)
         {
             Id = ForcesType.RifleForce;
-            Hp = 80;
+            Hp = ForceParametrsPack.Hp[(int)Id];
             Range = 2;
             Speed = 60;
             Armor = 0.9;
