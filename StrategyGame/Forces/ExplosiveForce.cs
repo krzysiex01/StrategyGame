@@ -10,7 +10,7 @@ namespace StrategyGame
         public ExplosiveForce(GameTime gameTime)
         {
             Id = ForcesType.ExplosiveForce;
-            Hp = 25;
+            Hp = ForceParametrsPack.Hp[(int)Id];
             Range = 0;
             Speed = 60;
             Armor = 0.98;
