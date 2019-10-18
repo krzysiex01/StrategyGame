@@ -24,6 +24,10 @@ namespace StrategyGame
         public int BoardSize { get; set; }
         public int[] Upgrades { get; set; }
         public int PlayerID { get; set; }
+        public int Income { get; set; }
+        public bool IsIncome { get; set; }
+        public double IncomeTime { get; set; }
+
 
         public Base PlayerBase;
 
@@ -31,10 +35,13 @@ namespace StrategyGame
         {
             ListOfForces = new List<Force>();
             Upgrades = new int[Enum.GetNames(typeof(ForcesType)).Length];
-            Cash = 100000;
+            Cash = 1000;
             BoardSize = size;
             PlayerID = id;
             PlayerBase = new Base(id);
+            Income = 20;
+            IsIncome = true;
+            IncomeTime = 5.0;
         }
 
         public bool Upgrade(ForcesType forceType)
@@ -152,9 +159,26 @@ namespace StrategyGame
             }
         }
 
-        public void DestroyNoHp()
+        public void DestroyNoHp(Player opponent)
         {
-            ListOfForces.RemoveAll(s => s.Hp <= 0); //TODO optimize
+            if(ListOfForces.Count>0)
+            {
+                Force force = ListOfForces[0];
+                if (force.Hp <= 0)
+                {
+                    opponent.Cash += CashPack.ForceCashReceived[(int)force.Id];
+                    ListOfForces.RemoveAt(0);
+                }
+            }
+        }
+
+        public void AddCash(GameTime gameTime)
+        {
+            if(IsIncome==true)
+            {
+                IsIncome = false;
+                GameEventEngine.Add(new GameEventDelayed(() => { Cash += Income; IsIncome = true; }, IncomeTime));
+            }  
         }
     }
 }

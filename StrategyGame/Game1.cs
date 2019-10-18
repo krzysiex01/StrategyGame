@@ -91,9 +91,10 @@ namespace StrategyGame
             //Player update logic
             player1.Update(player2,gameTime);
             player2.Update(player1,gameTime);
-            player1.DestroyNoHp();
-            player2.DestroyNoHp();
-
+            player1.DestroyNoHp(player2);
+            player2.DestroyNoHp(player1);
+            player1.AddCash(gameTime);
+            player2.AddCash(gameTime);
             base.Update(gameTime);
         }   
 
