@@ -112,10 +112,11 @@ namespace StrategyGame
             spriteBatch.Draw(TexturePack.background, new Rectangle(0,0,1000,480),Color.White);
             spriteBatch.End();
 
+            GameEffectsEngine.Draw(spriteBatch);
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
             userInterface.Draw(spriteBatch);
-            GameEffectsEngine.Draw(spriteBatch);
+            
 
 
             base.Draw(gameTime);

@@ -29,7 +29,7 @@ namespace StrategyGame
             for (int i = 0; i < data.Length; ++i) data[i] = Color.Red;
             rect.SetData(data);
 
-            Vector2 coor = new Vector2((float)(MyForce.PosX + (Me.PlayerID-2)*600*0.2), (float)Force.PosY);
+            Vector2 coor = new Vector2((float)(2 * (500 - MyForce.PosX) * ((double)Me.PlayerID - 1.5) + 500 + 600 * 0.2*(double)(Me.PlayerID-2)), (float)Force.PosY);
             spriteBatch.Begin();
             spriteBatch.Draw(rect, coor, Color.White);
             spriteBatch.End();
