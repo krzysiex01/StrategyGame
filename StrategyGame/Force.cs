@@ -25,7 +25,6 @@ namespace StrategyGame
         public bool IsReloading { get; set; }
         public bool Stop { get; set; }
 
-
         public virtual void Atack(Player player, Force enemyForce, GameTime gameTime)
         {
             if (!IsReloading)

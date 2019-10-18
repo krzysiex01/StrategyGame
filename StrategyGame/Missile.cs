@@ -25,6 +25,7 @@ namespace StrategyGame
         public Point CurrentPosition { get; set; }
         private int Direction { get; set; }
         public Force EnemyForce { get; set; }
+        public Texture2D MissileTexture2D { get; set; }
 
 
         public void Draw(SpriteBatch spriteBatch)
@@ -39,6 +40,7 @@ namespace StrategyGame
             spriteBatch.Begin();
             spriteBatch.Draw(rect,coor,Color.White);
             spriteBatch.End();
+            rect.Dispose();
         }
 
         public bool Update(GameTime gameTime)

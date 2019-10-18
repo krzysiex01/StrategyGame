@@ -18,9 +18,7 @@ namespace StrategyGame
             AtackPoints = 1;
             Accuracy = 0.99;
             Texture = TexturePack.droneCarrierForce;
-            //LastShot = gameTime.TotalGameTime.TotalSeconds;
             ReloadTime = 0.3;
-
         }
 
         public override void Atack(Player player, Force enemyForce,GameTime gameTime)
