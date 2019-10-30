@@ -15,10 +15,10 @@ namespace StrategyGame
             Range = 1;
             Speed = 40;
             Armor = 0.95;
-            AtackPoints = 1;
+            AtackPoints = 2;
             Accuracy = 0.99;
             Texture = TexturePack.droneCarrierForce;
-            ReloadTime = 0.3;
+            ReloadTime = 0.1;
         }
 
         public override void Atack(Player player, Force enemyForce,GameTime gameTime)

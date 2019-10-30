@@ -19,7 +19,10 @@ namespace StrategyGame
         public static Texture2D upgradeButtonFocused;
         public static Texture2D background;
         public static Texture2D smoke;
+        public static Texture2D explosion;
         public static GraphicsDevice graphicsDevice;
+
+        //TODO: Texture centering
 
         public static void TexturePackLoad(Game game)
         {
@@ -34,6 +37,7 @@ namespace StrategyGame
             upgradeButtonFocused = game.Content.Load<Texture2D>("UpgradeButtonFocused");
             background = game.Content.Load<Texture2D>("desert");
             smoke = game.Content.Load<Texture2D>("SmokeTrail");
+            explosion = game.Content.Load<Texture2D>("vehicleExplosion");
             graphicsDevice = game.GraphicsDevice;
         }
     }

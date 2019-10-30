@@ -19,7 +19,7 @@
                 for (int j = 0; j < 10; j++)
                 {
                     UpgradeValues[i, j] = new double[5];
-                    UpgradeInfo[i, j] = "Increase all 5 basic fields +10%";
+                    UpgradeInfo[i, j] = "HP, Atack and Speed +10%";
                     UpgradeCosts[i, j] = 500*(j+1);
 
                     for (int k = 0; k < 5; k++)
@@ -33,9 +33,9 @@
         public static void UpgradeForce(Force force, int upgradeLevel)
         {
             force.Hp *= UpgradeValues[(int)force.Id, upgradeLevel][0];
-            force.Armor *= UpgradeValues[(int)force.Id, upgradeLevel][1];
+            //force.Armor *= UpgradeValues[(int)force.Id, upgradeLevel][1];  //TODO: Armor & Accuracy upgrades
             force.AtackPoints *= UpgradeValues[(int)force.Id, upgradeLevel][2];
-            force.Accuracy *= UpgradeValues[(int)force.Id, upgradeLevel][3];
+            //force.Accuracy *= UpgradeValues[(int)force.Id, upgradeLevel][3];
             force.Speed *= UpgradeValues[(int)force.Id, upgradeLevel][4];
         }
     }
