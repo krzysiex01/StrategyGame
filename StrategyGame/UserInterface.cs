@@ -169,11 +169,6 @@ namespace StrategyGame
                 {
                     switch ((ButtonID)FocusID)
                     {
-                        case ButtonID.cannonForceButton:
-                            {
-                                Player1.AddForces(new CannonForce(gameTime));
-                                break;
-                            }
                         case ButtonID.explosiveForceButton:
                             {
                                 Player1.AddForces(new ExplosiveForce(gameTime));
@@ -194,6 +189,11 @@ namespace StrategyGame
                                 Player1.AddForces(new DroneCarrierForce(gameTime));
                                 break;
                             }
+                        case ButtonID.cannonForceButton:
+                            {
+                                Player1.AddForces(new CannonForce(gameTime));
+                                break;
+                            }
                         default:
                             break;
                     }
@@ -206,23 +206,24 @@ namespace StrategyGame
             //TEMP ADDING ENEMY
             if (state.IsKeyDown(Keys.NumPad1) & !PrevState.IsKeyDown(Keys.NumPad1))
             {
-                Player2.AddForces(new CannonForce(gameTime));
+                Player2.AddForces(new ExplosiveForce(gameTime));
             }
             if (state.IsKeyDown(Keys.NumPad2) & !PrevState.IsKeyDown(Keys.NumPad2))
             {
-                Player2.AddForces(new ExplosiveForce(gameTime));
+                Player2.AddForces(new RifleForce(gameTime));
             }
             if (state.IsKeyDown(Keys.NumPad3) & !PrevState.IsKeyDown(Keys.NumPad3))
             {
-                Player2.AddForces(new DroneCarrierForce(gameTime));
+                Player2.AddForces(new RocketForce(gameTime));      
             }
             if (state.IsKeyDown(Keys.NumPad4) & !PrevState.IsKeyDown(Keys.NumPad4))
             {
-                Player2.AddForces(new RocketForce(gameTime));
+                Player2.AddForces(new DroneCarrierForce(gameTime));
             }
             if (state.IsKeyDown(Keys.NumPad5) & !PrevState.IsKeyDown(Keys.NumPad5))
             {
-                Player2.AddForces(new RifleForce(gameTime));
+                
+                Player2.AddForces(new CannonForce(gameTime));
             }
             //testing engine
             if (state.IsKeyDown(Keys.Space) & !PrevState.IsKeyDown(Keys.Space))
