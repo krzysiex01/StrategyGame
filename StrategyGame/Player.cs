@@ -28,6 +28,7 @@ namespace StrategyGame
         public bool IsIncome { get; set; }
         public double IncomeTime { get; set; }
         public DataCollector Data { get; set; }
+        public bool IsInactive { get; set; }
 
 
         public Base PlayerBase;
@@ -43,6 +44,7 @@ namespace StrategyGame
             Income = 20;
             IsIncome = true;
             IncomeTime = 5.0;
+            IsInactive = true;
             Data = data;
         }
 
@@ -67,7 +69,7 @@ namespace StrategyGame
             }
         }
 
-        public bool AddForces(Force force, Player opponent)
+        public bool AddForces(Force force, Player opponent, GameTime gameTime)
         {
             if (PurchasePack.ForceCosts[(int)force.Id] > Cash)
             {
@@ -79,6 +81,7 @@ namespace StrategyGame
                 {
                     LearnInputOutput learning = new LearnInputOutput(opponent.ListOfForces, this.ListOfForces, this.Upgrades, this.Cash, (int)force.Id);
                     Data.WriteToFile(learning);
+                    this.DidSomething(gameTime);
                 }
                 Cash -= PurchasePack.ForceCosts[(int)force.Id];
                 UpgradePack.UpgradeForce(force, Upgrades[(int)force.Id]);
@@ -189,6 +192,13 @@ namespace StrategyGame
                 IsIncome = false;
                 GameEventEngine.Add(new GameEventDelayed(() => { Cash += Income; IsIncome = true; }, IncomeTime));
             }  
+        }
+
+        public void DidSomething(GameTime gameTime)
+        {
+            
+            IsInactive = false;   
+            
         }
     }
 }

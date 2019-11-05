@@ -47,6 +47,17 @@ namespace StrategyGame
             TexturePack.TexturePackLoad(this);
             fontPack = new FontPack(this);
             userInterface = new UserInterface(player1,player2,fontPack,data);
+            GameEventEngine.Add(new GameEventCyclic(() => {
+                if(player1.IsInactive==true)
+                {
+                    LearnInputOutput learning = new LearnInputOutput(player2.ListOfForces, player1.ListOfForces, player1.Upgrades, player1.Cash, 5);
+                    data.WriteToFile(learning);
+                }
+                else
+                {
+                    player1.IsInactive = true;
+                }
+            }, 15, int.MaxValue));
             base.Initialize();
         }
 
