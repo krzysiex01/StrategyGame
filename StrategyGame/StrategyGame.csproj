@@ -43,7 +43,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Base.cs" />
-    <Compile Include="StupidBot.cs" />
+    <Compile Include="Bot.cs" />
+    <Compile Include="LearnInputOutput.cs" />
+    <Compile Include="DataCollector.cs" />
     <Compile Include="Explosion.cs" />
     <Compile Include="Forces\CannonForce.cs" />
     <Compile Include="Forces\DroneCarrierForce.cs" />

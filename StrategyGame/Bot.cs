@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrategyGame
 {
-    class StupidBot
+    class Bot
     {
 
         public int Decision(List<Force> OpponentForces, List<Force> AIForces, int cash)

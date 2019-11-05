@@ -16,6 +16,7 @@ namespace StrategyGame
         public Player player2;
         private UserInterface userInterface;
         private FontPack fontPack;
+        public DataCollector data;
         public int Size { get; set; }
         public int Fps { get; set; }
 
@@ -40,12 +41,12 @@ namespace StrategyGame
         /// </summary>
         protected override void Initialize()
         {
-            player1 = new Player(Size,1);
-            player2 = new Player(Size,2);
+            data = new DataCollector();
+            player1 = new Player(Size,1,data);
+            player2 = new Player(Size,2,data);
             TexturePack.TexturePackLoad(this);
             fontPack = new FontPack(this);
-            userInterface = new UserInterface(player1,player2,fontPack);
-
+            userInterface = new UserInterface(player1,player2,fontPack,data);
             base.Initialize();
         }
 
@@ -96,6 +97,7 @@ namespace StrategyGame
             player1.AddCash(gameTime);
             player2.AddCash(gameTime);
             base.Update(gameTime);
+
         }   
 
         /// <summary>

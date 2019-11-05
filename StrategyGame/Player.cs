@@ -27,11 +27,12 @@ namespace StrategyGame
         public int Income { get; set; }
         public bool IsIncome { get; set; }
         public double IncomeTime { get; set; }
+        public DataCollector Data { get; set; }
 
 
         public Base PlayerBase;
 
-        public Player(int size, int id)
+        public Player(int size, int id, DataCollector data)
         {
             ListOfForces = new List<Force>();
             Upgrades = new int[Enum.GetNames(typeof(ForcesType)).Length];
@@ -42,6 +43,7 @@ namespace StrategyGame
             Income = 20;
             IsIncome = true;
             IncomeTime = 5.0;
+            Data = data;
         }
 
         public bool Upgrade(ForcesType forceType)
@@ -65,7 +67,7 @@ namespace StrategyGame
             }
         }
 
-        public bool AddForces(Force force)
+        public bool AddForces(Force force, Player opponent)
         {
             if (PurchasePack.ForceCosts[(int)force.Id] > Cash)
             {
@@ -73,9 +75,15 @@ namespace StrategyGame
             }
             else
             {
+                if (this.PlayerID == 1)
+                {
+                    LearnInputOutput learning = new LearnInputOutput(opponent.ListOfForces, this.ListOfForces, this.Upgrades, this.Cash, (int)force.Id);
+                    Data.WriteToFile(learning);
+                }
                 Cash -= PurchasePack.ForceCosts[(int)force.Id];
                 UpgradePack.UpgradeForce(force, Upgrades[(int)force.Id]);
                 ListOfForces.Add(force);
+                            
                 return true;
             }
         }
