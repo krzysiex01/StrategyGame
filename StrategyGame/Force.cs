@@ -17,7 +17,7 @@ namespace StrategyGame
         public double Armor { get; set; } // Storing as % value - the more the WORSE
         public double AtackPoints { get; set; }
         public double Accuracy { get; set; }
-        private Random Random { get; } = new Random();
+        public Random Random { get; } = new Random();
         public Texture2D Texture { get; set; }
         public double PosX { get; set; }
         public static double PosY { get; set; } = 350;

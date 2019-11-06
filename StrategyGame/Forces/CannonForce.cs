@@ -11,11 +11,11 @@ namespace StrategyGame
         {
             Id = ForcesType.CannonForce;
             Hp = ForceParametrsPack.Hp[(int)Id];
-            Range = 4;
+            Range = 3;
             Speed = 20;
             Armor = 0.65;
             AtackPoints = 90;
-            Accuracy = 0.45;
+            Accuracy = 0.4;
             Texture = TexturePack.cannonForce;
             ReloadTime = 5.0;
             IsReloading = false;

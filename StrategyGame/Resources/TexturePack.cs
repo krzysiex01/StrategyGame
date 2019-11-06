@@ -13,8 +13,8 @@ namespace StrategyGame
         public static Texture2D explosiveForce;
         public static Texture2D rocketForce;
         public static Texture2D rifleForce;
-        public static Texture2D explosiveButtonFocused;
-        public static Texture2D explosiveButton;
+        public static Texture2D ButtonFocused;
+        public static Texture2D Button;
         public static Texture2D upgradeButton;
         public static Texture2D upgradeButtonFocused;
         public static Texture2D background;
@@ -31,8 +31,8 @@ namespace StrategyGame
             explosiveForce = game.Content.Load<Texture2D>("wybuchowy");
             rocketForce = game.Content.Load<Texture2D>("rakiety");
             rifleForce = game.Content.Load<Texture2D>("karabin");
-            explosiveButton = game.Content.Load<Texture2D>("ExplosiveButton");
-            explosiveButtonFocused = game.Content.Load<Texture2D>("ExplosiveButtonFocused");
+            Button = game.Content.Load<Texture2D>("VechicleButton");
+            ButtonFocused = game.Content.Load<Texture2D>("VechicleButtonFocused");
             upgradeButton = game.Content.Load<Texture2D>("UpgradeButton");
             upgradeButtonFocused = game.Content.Load<Texture2D>("UpgradeButtonFocused");
             background = game.Content.Load<Texture2D>("desert");

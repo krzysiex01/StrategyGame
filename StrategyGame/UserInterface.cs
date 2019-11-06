@@ -93,7 +93,7 @@ namespace StrategyGame
         {
             for (int i = 0; i < NumberOfButtons; i++)
             {
-                buttons[i] = new Button(i * 110, 0, TexturePack.explosiveButtonFocused, TexturePack.explosiveButton, TexturePack.upgradeButtonFocused, TexturePack.upgradeButton, (ButtonID)i);
+                buttons[i] = new Button(i * 110, 0, TexturePack.ButtonFocused, TexturePack.Button, TexturePack.upgradeButtonFocused, TexturePack.upgradeButton, (ButtonID)i);
             }
         }
 
@@ -111,23 +111,37 @@ namespace StrategyGame
                 }
             }
 
+            //draw vechicles on buttons
+            Texture2D texture = TexturePack.explosiveForce;
+            spriteBatch.Begin();
+            spriteBatch.Draw(texture, new Vector2( 5, 10 ), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0, new Vector2(0, 0), 0.16f, SpriteEffects.None, 1);
+            texture = TexturePack.rifleForce;
+            spriteBatch.Draw(texture, new Vector2(115, 10), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0, new Vector2(0, 0), 0.16f, SpriteEffects.None, 1);
+            texture = TexturePack.rocketForce;
+            spriteBatch.Draw(texture, new Vector2(225, 10), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0, new Vector2(0, 0), 0.16f, SpriteEffects.None, 1);
+            texture = TexturePack.droneCarrierForce;
+            spriteBatch.Draw(texture, new Vector2(335, 10), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0, new Vector2(0, 0), 0.16f, SpriteEffects.None, 1);
+            texture = TexturePack.cannonForce;
+            spriteBatch.Draw(texture, new Vector2(445, 10), new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0, new Vector2(0, 0), 0.16f, SpriteEffects.None, 1);
+            spriteBatch.End();
         }
 
         private void DrawStrings(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(FontPack.BasicFont, Player1.Cash.ToString() + '$', new Vector2(600, 40), Color.Black);
+            spriteBatch.DrawString(FontPack.BasicFont, Player1.Cash.ToString() + '$', new Vector2(560, 20), Color.Black);
+            spriteBatch.DrawString(FontPack.BasicFont, Player2.Cash.ToString() + '$', new Vector2(900, 20), Color.Black);
             if (UpgradeFocus)
             {
-                spriteBatch.DrawString(FontPack.BasicFont, "Level: " + Player1.Upgrades[FocusID].ToString(), new Vector2(730, 40), Color.GreenYellow);
-                spriteBatch.DrawString(FontPack.BasicFont, UpgradePack.UpgradeInfo[FocusID, Player1.Upgrades[FocusID]], new Vector2(600, 130), Color.Pink);
-                spriteBatch.DrawString(FontPack.BasicFont, "Upgrade cost: " + UpgradePack.UpgradeCosts[FocusID, Player1.Upgrades[FocusID]].ToString() + "$", new Vector2(600, 170), Color.Pink);
+                spriteBatch.DrawString(FontPack.BasicFont, "Level: " + Player1.Upgrades[FocusID].ToString(), new Vector2(560, 140), tmpColor);
+                spriteBatch.DrawString(FontPack.BasicFont, UpgradePack.UpgradeInfo[FocusID, Player1.Upgrades[FocusID]], new Vector2(560, 60), tmpColor);
+                spriteBatch.DrawString(FontPack.BasicFont, "Upgrade cost: " + UpgradePack.UpgradeCosts[FocusID, Player1.Upgrades[FocusID]].ToString() + "$", new Vector2(560, 100), tmpColor);
             }
             else
             {
-                spriteBatch.DrawString(FontPack.BasicFont, "Level: " + Player1.Upgrades[FocusID].ToString(), new Vector2(730, 40), Color.GreenYellow);
-                spriteBatch.DrawString(FontPack.BasicFont, ((ForcesType)FocusID).ToString(), new Vector2(600, 130), Color.Pink);
-                spriteBatch.DrawString(FontPack.BasicFont, "Cost: " + PurchasePack.ForceCosts[FocusID], new Vector2(600, 170), tmpColor);
+                spriteBatch.DrawString(FontPack.BasicFont, "Level: " + Player1.Upgrades[FocusID].ToString(), new Vector2(560, 140), tmpColor);
+                spriteBatch.DrawString(FontPack.BasicFont, ((ForcesType)FocusID).ToString(), new Vector2(560, 60), tmpColor);
+                spriteBatch.DrawString(FontPack.BasicFont, "Cost: " + PurchasePack.ForceCosts[FocusID], new Vector2(560, 100), tmpColor);
             }
             spriteBatch.End();
         }
@@ -229,6 +243,27 @@ namespace StrategyGame
             {
                 
                 Player2.AddForces(new CannonForce(gameTime), Player1, gameTime);
+            }
+            //TEMP UPGRADING ENEMY
+            if (state.IsKeyDown(Keys.NumPad0) & !PrevState.IsKeyDown(Keys.NumPad0))
+            {
+                Player2.Upgrade((ForcesType)0);
+            }
+            if (state.IsKeyDown(Keys.NumPad6) & !PrevState.IsKeyDown(Keys.NumPad6))
+            {
+                Player2.Upgrade((ForcesType)1);
+            }
+            if (state.IsKeyDown(Keys.NumPad7) & !PrevState.IsKeyDown(Keys.NumPad7))
+            {
+                Player2.Upgrade((ForcesType)2);
+            }
+            if (state.IsKeyDown(Keys.NumPad8) & !PrevState.IsKeyDown(Keys.NumPad8))
+            {
+                Player2.Upgrade((ForcesType)3);
+            }
+            if (state.IsKeyDown(Keys.NumPad9) & !PrevState.IsKeyDown(Keys.NumPad9))
+            {
+                Player2.Upgrade((ForcesType)4);
             }
             //testing engine
             if (state.IsKeyDown(Keys.Space) & !PrevState.IsKeyDown(Keys.Space))
