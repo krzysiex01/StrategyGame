@@ -29,9 +29,7 @@ namespace StrategyGame
         public double IncomeTime { get; set; }
         public DataCollector Data { get; set; }
         public bool IsInactive { get; set; }
-
-
-        public Base PlayerBase;
+        public Base PlayerBase { get; set; }
 
         public Player(int size, int id, DataCollector data)
         {

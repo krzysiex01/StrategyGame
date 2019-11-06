@@ -19,6 +19,8 @@ namespace StrategyGame
             Accuracy = 0.99;
             Texture = TexturePack.droneCarrierForce;
             ReloadTime = 0.2;
+            IsReloading = true;
+            GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
         }
 
         public override void Atack(Player player, Force enemyForce,GameTime gameTime)

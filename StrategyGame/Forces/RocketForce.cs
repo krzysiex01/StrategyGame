@@ -18,7 +18,8 @@ namespace StrategyGame
             Accuracy = 0.5;
             Texture = TexturePack.rocketForce;
             ReloadTime = 3.0;
-            IsReloading = false;
+            IsReloading = true;
+            GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
         }
 
         public override void Atack(Player player, Force enemyForce,GameTime gameTime)

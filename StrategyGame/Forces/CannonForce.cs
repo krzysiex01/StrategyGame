@@ -18,7 +18,8 @@ namespace StrategyGame
             Accuracy = 0.4;
             Texture = TexturePack.cannonForce;
             ReloadTime = 5.0;
-            IsReloading = false;
+            IsReloading = true;
+            GameEventEngine.Add(new GameEventDelayed(() => { IsReloading = false; }, ReloadTime));
         }
     }
 }
