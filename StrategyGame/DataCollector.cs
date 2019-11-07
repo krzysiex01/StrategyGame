@@ -9,7 +9,7 @@ namespace StrategyGame
 {
     public class DataCollector
     {
-        public FileStream F = new FileStream("test3.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        public FileStream F = new FileStream("io.txt", FileMode.Append, FileAccess.Write);
         //public List<Entry> Entries;
         public DataCollector()
         {
