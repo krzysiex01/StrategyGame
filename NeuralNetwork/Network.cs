@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 
 using AForge;
 using AForge.Neuro;
@@ -12,6 +14,7 @@ using AForge.Controls;
 
 namespace NeuralNetwork
 {
+    [Serializable]
     public class Network
     {
         public double[][] Input { get; set; } = null;
@@ -26,6 +29,9 @@ namespace NeuralNetwork
         {
             MiddleNeuronsCount = middleNeuronsCount;
         }
+
+        public Network()
+        { }
         
 
         public void DecodeIOFile()
@@ -205,6 +211,12 @@ namespace NeuralNetwork
             Console.ReadKey();
             return decision;
 
+        }
+
+        public void Serialize()
+        {
+            XmlSerialization xmlSerialization = new XmlSerialization();
+            xmlSerialization.SerializeObject<Network>( this, "Siec.xml");
         }
 
 
