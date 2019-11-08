@@ -17,6 +17,7 @@ namespace StrategyGame
         private UserInterface userInterface;
         private FontPack fontPack;
         public DataCollector data;
+        public Bot bot;
         public int Size { get; set; }
         public int Fps { get; set; }
 
@@ -42,6 +43,7 @@ namespace StrategyGame
         protected override void Initialize()
         {
             data = new DataCollector();
+            bot = new Bot();
             player1 = new Player(Size,1,data);
             player2 = new Player(Size,2,data);
             TexturePack.TexturePackLoad(this);

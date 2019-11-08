@@ -18,11 +18,11 @@
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    UpgradeValues[i, j] = new double[5];
-                    UpgradeInfo[i, j] = "HP, Atack and Speed +10%";
+                    UpgradeValues[i, j] = new double[6];
+                    UpgradeInfo[i, j] = "HP, Atack, Range and Speed +10%";
                     UpgradeCosts[i, j] = 500*(j+1);
 
-                    for (int k = 0; k < 5; k++)
+                    for (int k = 0; k < 6; k++)
                     {
                         UpgradeValues[i, j][k] = 1 + j * 0.1;
                     }
@@ -37,6 +37,7 @@
             force.AtackPoints *= UpgradeValues[(int)force.Id, upgradeLevel][2];
             //force.Accuracy *= UpgradeValues[(int)force.Id, upgradeLevel][3];
             force.Speed *= UpgradeValues[(int)force.Id, upgradeLevel][4];
+            force.Range *= UpgradeValues[(int)force.Id, upgradeLevel][5];
         }
     }
 }

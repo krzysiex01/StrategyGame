@@ -5,41 +5,65 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+using AForge;
+using AForge.Neuro;
+using AForge.Neuro.Learning;
+using AForge.Controls;
+
 namespace NeuralNetwork
 {
-    class Network
+    public class Network
     {
         public double[][] Input { get; set; } = null;
         public double[][] Output { get; set; } = null;
+        ActivationNetwork Network1 { get; set; }
+        BackPropagationLearning Teacher { get; set; }
+        int LineCount { get; set; }
+        int MiddleNeuronsCount { get; set; }
+        public FileStream F { get; set; }
 
-        public FileStream F = new FileStream("io.txt", FileMode.Open, FileAccess.Read);
+        public  Network(int middleNeuronsCount)
+        {
+            MiddleNeuronsCount = middleNeuronsCount;
+        }
+        
+
         public void DecodeIOFile()
         {
-            var lineCount = File.ReadLines(@"io.txt").Count();
-            Input = new double[lineCount][];
-            Output = new double[lineCount][];
-
-            for (int i=0;i<lineCount ;i++)
+            string[] lines = File.ReadAllLines("io.txt");
+            File.WriteAllLines("io.txt", lines.Distinct().ToArray());
+            LineCount = File.ReadLines(@"io.txt").Count();
+            Input = new double[LineCount][];
+            Output = new double[LineCount][];
+            F = new FileStream("io.txt", FileMode.Open, FileAccess.ReadWrite);
+            for (int i = 0; i < LineCount; i++)
             {
                 int output = F.ReadByte();
-                Output[i] = new double[1];
-                Output[i][0] = output-48;
+                Output[i] = new double[4];
+                Output[i][0] =output%2;
+                output /= 2;
+                Output[i][1] = output % 2;
+                output /= 2;
+                Output[i][2] = output % 2;
+                output /= 2;
+                Output[i][3] = output % 2;
+
 
                 int byteInp;
                 byteInp = F.ReadByte(); //read "-"
 
                 Input[i] = new double[16];
-                for(int j=0; j<15 ;j++)
+                for (int j = 0; j < 15; j++)
                 {
                     byteInp = F.ReadByte();
                     //Console.Write((char)byteInp);
-                    Input[i][j] = byteInp-48;
+                    Input[i][j] = (double)(byteInp - 48)/10.0;
                 }
 
                 byteInp = F.ReadByte(); //read "|"
 
                 String cash = null;
-                
+
                 do
                 {
                     byteInp = F.ReadByte();
@@ -52,7 +76,7 @@ namespace NeuralNetwork
                 try
                 {
                     cashInt = System.Convert.ToInt32(cash);
-                    Input[i][15] = cashInt;
+                    Input[i][15] = Math.Min((double)cashInt/2000.0,1);
                 }
                 catch (FormatException)
                 {
@@ -70,15 +94,21 @@ namespace NeuralNetwork
                 //Console.WriteLine();
             }
 
-            for(int i=0;i<lineCount;i++)
+            for (int i = 0; i < LineCount; i++)
             {
-                for(int j=0;j<16;j++)
+                for (int j = 0; j < 16; j++)
                 {
                     Console.Write(Input[i][j]);
                     Console.Write(" ");
                 }
 
-                Console.WriteLine(Output[i][0]);
+                Console.Write(Output[i][0]);
+                Console.Write(" ");
+                Console.Write(Output[i][1]);
+                Console.Write(" ");
+                Console.Write(Output[i][2]);
+                Console.Write(" ");
+                Console.WriteLine(Output[i][3]);
 
             }
 
@@ -86,6 +116,96 @@ namespace NeuralNetwork
             Console.ReadKey();
         }
 
+
+        public void CreateNetwork(double learningRate, double momentum)
+        {
+            Network1 = new ActivationNetwork((IActivationFunction)new SigmoidFunction(2), 16, MiddleNeuronsCount, 4);
+            Teacher = new BackPropagationLearning(Network1);
+            Teacher.LearningRate = learningRate;
+            Teacher.Momentum = momentum;
+        }
+
+        public void Learn(double errorLimit)
+        {
+            bool needToStop = false;
+            int iteration = 1;
+
+            while (!needToStop)
+            {
+                double error = Teacher.RunEpoch(Input, Output)/(double)LineCount;
+                iteration++;
+                Console.WriteLine(error);
+                //Console.WriteLine(Network1.Layers[0].Neurons[1].Weights[0]);
+                //Console.WriteLine(Network1.Compute(Input[0])[0]);
+
+                if (error <= errorLimit)
+                    needToStop = true;
+                
+            }
+
+        }
+
+        public void PublishWeights()
+        {
+            Console.WriteLine("Warstwa srodkowa");
+            for(int i=0;i<MiddleNeuronsCount;i++)
+            {
+                for(int j=0;j<16;j++)
+                {
+                    Console.Write(Network1.Layers[0].Neurons[i].Weights[j].ToString("F2"));
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("Output");
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 16; j++)
+                {
+                    Console.Write(Network1.Layers[1].Neurons[i].Weights[j].ToString("F2"));
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
+
+            Console.ReadKey();
+        }
+
+        public int Compute(double[] input)
+        {
+            //editing input to match learned form
+            for(int i=0;i<15;i++)
+            {
+                input[i] /= 10.0;
+            }
+            input[15] = Math.Min(input[15] / 2000.0, 1);
+
+            double[] result;
+            result = Network1.Compute(input);
+
+            for (int i = 0; i < 4; i++)
+            {
+                result[i] = Math.Round(result[i]);
+            }
+
+            for (int i=0;i<4;i++)
+            {
+                Console.Write(result[i]);
+                Console.Write(" ");
+            }
+            Console.WriteLine();
+            Console.ReadKey();
+
+            int decision=0;
+            for(int i=0;i<4;i++)
+            {
+                decision += (int)result[i]*(int)Math.Pow(2.0, i);
+            }
+            Console.WriteLine(decision);
+            Console.ReadKey();
+            return decision;
+
+        }
 
 
     }

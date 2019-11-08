@@ -82,7 +82,9 @@ namespace StrategyGame
                     this.DidSomething(gameTime);
                 }
                 Cash -= PurchasePack.ForceCosts[(int)force.Id];
+                force.OriginalRange = force.Range;
                 UpgradePack.UpgradeForce(force, Upgrades[(int)force.Id]);
+                force.MaxHp = force.Hp;
                 ListOfForces.Add(force);
                             
                 return true;
@@ -139,8 +141,12 @@ namespace StrategyGame
                 {
                     if (force.PosX + opponent.ListOfForces[0].PosX + force.Range * 100.0 >= BoardSize)
                     {
-                        force.Stop = true;
+                        
                         force.Atack(opponent,opponent.ListOfForces[0], gameTime);
+                        if (force.PosX + opponent.ListOfForces[0].PosX + force.OriginalRange * 100.0 >= BoardSize)
+                        {
+                            force.Stop = true;
+                        }
                     }
                 }
             }
@@ -152,9 +158,11 @@ namespace StrategyGame
                     force.Stop = false;
                     if (force.PosX + force.Range * 100.0 >= BoardSize)
                     {
-                        force.Stop = true;
                         force.Atack(opponent, gameTime);
-                        
+                        if (force.PosX + force.OriginalRange * 100.0 >= BoardSize)
+                        {
+                            force.Stop = true;
+                        }
                     }
                 }
             }

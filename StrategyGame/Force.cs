@@ -12,7 +12,9 @@ namespace StrategyGame
     {
         public ForcesType Id { get; set; }
         public double Hp { get; set; }
+        public double MaxHp { get; set; }
         public double Range { get; set; }
+        public double OriginalRange { get; set; }
         public double Speed { get; set; }
         public double Armor { get; set; } // Storing as % value - the more the WORSE
         public double AtackPoints { get; set; }
@@ -81,7 +83,7 @@ namespace StrategyGame
                 new Vector2((int)(2 * (500 - PosX) * ((double)playerID - 1.5) + 500 - (int)(600 * 0.2) + Texture.Width * 0.005),
                     (int)Force.PosY - 15),
                 (int)(Texture.Width * 0.019),
-                Hp / ForceParametrsPack.Hp[(int)Id]);
+                Hp / MaxHp);
                         spriteBatch.Begin();
                         spriteBatch.Draw(Texture, new Vector2((int)PosX - (int)(600 * 0.2), (int)PosY), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.None, 1);
                         spriteBatch.End();
@@ -93,7 +95,7 @@ namespace StrategyGame
                 new Vector2((int)(2 * (500 - PosX) * ((double)playerID - 1.5) + 500 + Texture.Width * 0.005),
                     (int)Force.PosY - 15),
                 (int)(Texture.Width * 0.019),
-                Hp / ForceParametrsPack.Hp[(int)Id]);
+                Hp /MaxHp);
                         spriteBatch.Begin();
                         spriteBatch.Draw(Texture, new Vector2(boardSize - (int)PosX, (int)PosY), new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.FlipHorizontally, 1);
                         spriteBatch.End();

@@ -20,7 +20,7 @@ namespace StrategyGame
         public Force MyForce { get; set; }
         public Player Me { get; set; }
         public Texture2D Texture { get; set; }
-        bool IsFinished;
+        bool IsFinished { get; set; }
 
         public void Draw(SpriteBatch spriteBatch)
         {

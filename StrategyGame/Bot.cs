@@ -4,13 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using NeuralNetwork;
+
 namespace StrategyGame
 {
-    class Bot
+    public class Bot
     {
 
-        public int Decision(List<Force> OpponentForces, List<Force> AIForces, int cash)
+        public int Decision()
         {
+            double[] input = new double[] { 4, 0, 1, 0, 0, 4, 9, 9, 9, 9, 2, 9, 9, 9, 9, 1046 };
+            
             //0 - explosive
             //1 - rifle
             //2 - rocket
