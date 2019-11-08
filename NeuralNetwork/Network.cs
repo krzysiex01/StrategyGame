@@ -19,20 +19,16 @@ namespace NeuralNetwork
     {
         public double[][] Input { get; set; } = null;
         public double[][] Output { get; set; } = null;
-        ActivationNetwork Network1 { get; set; }
-        BackPropagationLearning Teacher { get; set; }
-        int LineCount { get; set; }
-        int MiddleNeuronsCount { get; set; }
+        public ActivationNetwork Network1 { get; set; }
+        public BackPropagationLearning Teacher { get; set; }
+        public int LineCount { get; set; }
+        public int MiddleNeuronsCount { get; set; } = 16;
         public FileStream F { get; set; }
 
-        public  Network(int middleNeuronsCount)
-        {
-            MiddleNeuronsCount = middleNeuronsCount;
-        }
 
         public Network()
-        { }
-        
+        {
+        }
 
         public void DecodeIOFile()
         {
@@ -211,12 +207,6 @@ namespace NeuralNetwork
             Console.ReadKey();
             return decision;
 
-        }
-
-        public void Serialize()
-        {
-            XmlSerialization xmlSerialization = new XmlSerialization();
-            xmlSerialization.SerializeObject<Network>( this, "Siec.xml");
         }
 
 
