@@ -130,7 +130,7 @@ namespace StrategyGame
         {
             spriteBatch.Begin();
             spriteBatch.DrawString(FontPack.BasicFont, Player1.Cash.ToString() + '$', new Vector2(560, 20), Color.Black);
-            spriteBatch.DrawString(FontPack.BasicFont, Player2.Cash.ToString() + '$', new Vector2(900, 20), Color.Black);
+            //spriteBatch.DrawString(FontPack.BasicFont, Player2.Cash.ToString() + '$', new Vector2(900, 20), Color.Black);
             spriteBatch.DrawString(FontPack.BasicFont, "Base HP:", new Vector2(10, 450), Color.Black);
             spriteBatch.DrawString(FontPack.BasicFont, "Base HP:", new Vector2(650, 450), Color.Black);
             if (UpgradeFocus)
@@ -235,6 +235,7 @@ namespace StrategyGame
                 }
             }
             //TEMP ADDING ENEMY
+            /*
             if (state.IsKeyDown(Keys.NumPad1) & !PrevState.IsKeyDown(Keys.NumPad1))
             {
                 Player2.AddForces(new ExplosiveForce(gameTime), Player1, gameTime);
@@ -285,6 +286,7 @@ namespace StrategyGame
                 //GameEventEngine.Add(new GameEventDelayed(() => { tmpColor = Color.Black; }, 3.0f));
                 //GameEventEngine.Add(new GameEventCyclic(() => { tmpColor = Color.Red; }, 2, 5));
             }
+            */
 
             PrevState = state;
         }
