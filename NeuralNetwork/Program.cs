@@ -16,12 +16,12 @@ namespace NeuralNetwork
             Console.WriteLine("Press any key to proceed");
             Console.ReadKey();
             network.DecodeIOFile();
-            network.CreateNetwork(0.2, 0);
+            network.CreateNetwork(0.3, 0);
             network.Learn(0.1,30000);
             network.PublishWeights();
 
-            double[] input = new double[] { 4,0,1,0,0,4,9,9,9,9,2,9,9,9,9,1046 };
-            network.Compute(input);
+            //double[] input = new double[] { 4,0,1,0,0,4,9,9,9,9,2,9,9,9,9,1046 };
+            //network.Compute(input);
 
             network.ActNetwork.Save("Siec.bin");
 

@@ -13,11 +13,11 @@ namespace StrategyGame
         {
             
             Hp = new double[6];
-            Hp[(int)ForcesType.DroneCarrierForce] = 150;
+            Hp[(int)ForcesType.DroneCarrierForce] = 180;
             Hp[(int)ForcesType.CannonForce] = 200;
             Hp[(int)ForcesType.RifleForce] = 80;
             Hp[(int)ForcesType.RocketForce] = 120;
-            Hp[(int)ForcesType.ExplosiveForce] = 25;
+            Hp[(int)ForcesType.ExplosiveForce] = 40;
 
         }
     }

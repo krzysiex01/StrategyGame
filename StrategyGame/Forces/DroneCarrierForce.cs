@@ -14,7 +14,7 @@ namespace StrategyGame
             Hp = ForceParametrsPack.Hp[(int)Id];
             Range = 1;
             Speed = 40;
-            Armor = 0.95;
+            Armor = 0.9;
             AtackPoints = 1;
             Accuracy = 0.99;
             Texture = TexturePack.droneCarrierForce;

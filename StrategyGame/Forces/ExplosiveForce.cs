@@ -12,7 +12,7 @@ namespace StrategyGame
             Id = ForcesType.ExplosiveForce;
             Hp = ForceParametrsPack.Hp[(int)Id];
             Range = 0;
-            Speed = 60;
+            Speed = 80;
             Armor = 0.98;
             AtackPoints = 150;
             Accuracy = 1.0;

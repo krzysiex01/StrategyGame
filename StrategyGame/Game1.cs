@@ -116,7 +116,7 @@ namespace StrategyGame
             //Win condition
             Winner = win.CheckWin(player1,player2);
 
-            //Bot decisions logic
+            //Bot decisions logic (comment to play player vs player)
             bot.Proceed(bot.Decision(player1, player2), player1, player2,gameTime);
 
 
