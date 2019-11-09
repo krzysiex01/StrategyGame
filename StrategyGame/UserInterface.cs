@@ -131,6 +131,8 @@ namespace StrategyGame
             spriteBatch.Begin();
             spriteBatch.DrawString(FontPack.BasicFont, Player1.Cash.ToString() + '$', new Vector2(560, 20), Color.Black);
             spriteBatch.DrawString(FontPack.BasicFont, Player2.Cash.ToString() + '$', new Vector2(900, 20), Color.Black);
+            spriteBatch.DrawString(FontPack.BasicFont, "Base HP:", new Vector2(10, 450), Color.Black);
+            spriteBatch.DrawString(FontPack.BasicFont, "Base HP:", new Vector2(650, 450), Color.Black);
             if (UpgradeFocus)
             {
                 spriteBatch.DrawString(FontPack.BasicFont, "Level: " + Player1.Upgrades[FocusID].ToString(), new Vector2(560, 140), tmpColor);
@@ -144,6 +146,16 @@ namespace StrategyGame
                 spriteBatch.DrawString(FontPack.BasicFont, "Cost: " + PurchasePack.ForceCosts[FocusID], new Vector2(560, 100), tmpColor);
             }
             spriteBatch.End();
+        }
+
+        private void DrawWin(SpriteBatch spriteBatch,int winner)
+        {
+            if(winner!=0)
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(FontPack.BasicFont, "Win of player " + winner.ToString(), new Vector2(400, 200), Color.Black);
+                spriteBatch.End();
+            }
         }
 
         private void ProcessKeyboardInput(GameTime gameTime)
@@ -282,10 +294,13 @@ namespace StrategyGame
             ProcessKeyboardInput(gameTime);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, int winner,double hp1, double hp2)
         {
             DrawBasicInterface(spriteBatch);
             DrawStrings(spriteBatch);
+            DrawWin(spriteBatch, winner);
+            HpBarBase.Draw(spriteBatch, new Vector2(140, 455), 20, hp1 / 1000.0);
+            HpBarBase.Draw(spriteBatch, new Vector2(780, 455), 20, hp2 / 1000.0);
         }
     }
 }

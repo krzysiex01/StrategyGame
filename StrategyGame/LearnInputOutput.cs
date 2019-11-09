@@ -11,16 +11,16 @@ namespace StrategyGame
         public List<int> Input { get; set; }
         public List<int> Output { get; set; }
 
-        public LearnInputOutput(List<Force> enemyForcesAll, List<Force> yourForcesAll, int[] Upgrades, int cash, int decision)
+        public LearnInputOutput(List<Force> enemyForcesAll, List<Force> yourForcesAll, int[] upgrades, int cash, int decision)
         {
             Input = new List<int>();
             Output = new List<int>();
 
             Output.Add(decision);
 
-            for (int i = 0; i < Upgrades.Length; i++)
+            for (int i = 0; i < upgrades.Length; i++)
             {
-                Input.Add(Upgrades[i]);
+                Input.Add(upgrades[i]);
             }
 
             for (int i=0;i<5;i++)

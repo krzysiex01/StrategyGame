@@ -15,20 +15,16 @@ using AForge.Controls;
 namespace NeuralNetwork
 {
     [Serializable]
-    public class Network
+    public class MyNetwork
     {
         public double[][] Input { get; set; } = null;
         public double[][] Output { get; set; } = null;
-        public ActivationNetwork Network1 { get; set; }
+        public ActivationNetwork ActNetwork { get; set; }
         public BackPropagationLearning Teacher { get; set; }
         public int LineCount { get; set; }
-        public int MiddleNeuronsCount { get; set; } = 16;
+        public int MiddleNeuronsCount { get; set; } = 18;
         public FileStream F { get; set; }
 
-
-        public Network()
-        {
-        }
 
         public void DecodeIOFile()
         {
@@ -121,26 +117,26 @@ namespace NeuralNetwork
 
         public void CreateNetwork(double learningRate, double momentum)
         {
-            Network1 = new ActivationNetwork((IActivationFunction)new SigmoidFunction(2), 16, MiddleNeuronsCount, 4);
-            Teacher = new BackPropagationLearning(Network1);
+            ActNetwork = new ActivationNetwork((IActivationFunction)new SigmoidFunction(2), 16, MiddleNeuronsCount, 4);
+            Teacher = new BackPropagationLearning(ActNetwork);
             Teacher.LearningRate = learningRate;
             Teacher.Momentum = momentum;
         }
 
-        public void Learn(double errorLimit)
+        public void Learn(double errorLimit,int maxIter)
         {
             bool needToStop = false;
             int iteration = 1;
 
             while (!needToStop)
             {
-                double error = Teacher.RunEpoch(Input, Output)/(double)LineCount;
+                double error = Teacher.RunEpoch(Input, Output) / (double)LineCount;
                 iteration++;
                 Console.WriteLine(error);
-                //Console.WriteLine(Network1.Layers[0].Neurons[1].Weights[0]);
-                //Console.WriteLine(Network1.Compute(Input[0])[0]);
+                //Console.WriteLine(ActNetwork.Layers[0].Neurons[1].Weights[0]);
+                //Console.WriteLine(ActNetwork.Compute(Input[0])[0]);
 
-                if (error <= errorLimit)
+                if (error <= errorLimit || iteration>=maxIter)
                     needToStop = true;
                 
             }
@@ -154,7 +150,7 @@ namespace NeuralNetwork
             {
                 for(int j=0;j<16;j++)
                 {
-                    Console.Write(Network1.Layers[0].Neurons[i].Weights[j].ToString("F2"));
+                    Console.Write(ActNetwork.Layers[0].Neurons[i].Weights[j].ToString("F2"));
                     Console.Write(" ");
                 }
                 Console.WriteLine();
@@ -164,7 +160,7 @@ namespace NeuralNetwork
             {
                 for (int j = 0; j < 16; j++)
                 {
-                    Console.Write(Network1.Layers[1].Neurons[i].Weights[j].ToString("F2"));
+                    Console.Write(ActNetwork.Layers[1].Neurons[i].Weights[j].ToString("F2"));
                     Console.Write(" ");
                 }
                 Console.WriteLine();
@@ -183,7 +179,7 @@ namespace NeuralNetwork
             input[15] = Math.Min(input[15] / 2000.0, 1);
 
             double[] result;
-            result = Network1.Compute(input);
+            result = ActNetwork.Compute(input);
 
             for (int i = 0; i < 4; i++)
             {

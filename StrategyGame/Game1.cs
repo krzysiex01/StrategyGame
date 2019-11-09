@@ -18,8 +18,10 @@ namespace StrategyGame
         private FontPack fontPack;
         public DataCollector data;
         public Bot bot;
+        public Win win;
         public int Size { get; set; }
         public int Fps { get; set; }
+        private int Winner { get; set; } = 0;
 
         public Game1()
         {
@@ -44,6 +46,7 @@ namespace StrategyGame
         {
             data = new DataCollector();
             bot = new Bot();
+            win = new Win();
             player1 = new Player(Size,1,data);
             player2 = new Player(Size,2,data);
             TexturePack.TexturePackLoad(this);
@@ -109,6 +112,18 @@ namespace StrategyGame
             player2.DestroyNoHp(player1);
             player1.AddCash(gameTime);
             player2.AddCash(gameTime);
+
+            //Win condition
+            Winner = win.CheckWin(player1,player2);
+
+            //Bot decisions logic
+            bot.Proceed(bot.Decision(player1, player2), player1, player2,gameTime);
+
+
+            if (Winner!=0)  
+            {
+                GameEventEngine.Add(new GameEventDelayed(() => { Exit(); }, 10));
+            }
             base.Update(gameTime);
 
         }   
@@ -130,7 +145,7 @@ namespace StrategyGame
             GameEffectsEngine.Draw(spriteBatch);
             player1.Draw(spriteBatch);
             player2.Draw(spriteBatch);
-            userInterface.Draw(spriteBatch);
+            userInterface.Draw(spriteBatch, Winner,player1.PlayerBase.Hp,player2.PlayerBase.Hp);
             
 
 

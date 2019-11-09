@@ -26,7 +26,7 @@ namespace StrategyGame
         {
             if (!IsReloading)
             {
-                Missile missile = new Missile(enemyForce, AtackPoints, Random.NextDouble() <= Accuracy,
+                Missile missile = new Missile(player,enemyForce, AtackPoints, Random.NextDouble() <= Accuracy,
                     new Point((int)(2 * (500 - PosX) * (1.5 - (double)player.PlayerID) + 500),
                     (int)Force.PosY + (int)(170 * 0.2)),
                     new Point((int)(2 * (500 - enemyForce.PosX) * ((double)player.PlayerID - 1.5) + 500),
@@ -35,7 +35,7 @@ namespace StrategyGame
 
                 GameEffectsEngine.Add(missile);
 
-                Missile missile2 = new Missile(enemyForce, AtackPoints, Random.NextDouble() <= Accuracy,
+                Missile missile2 = new Missile(player,enemyForce, AtackPoints, Random.NextDouble() <= Accuracy,
                     new Point((int)(2 * (500 - PosX) * (1.5 - (double)player.PlayerID) + 500),
                     (int)Force.PosY + (int)(170 * 0.2)),
                     new Point((int)(2 * (500 - enemyForce.PosX) * ((double)player.PlayerID - 1.5) + 500),

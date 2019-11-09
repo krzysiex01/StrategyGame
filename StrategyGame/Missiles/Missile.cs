@@ -7,8 +7,9 @@ namespace StrategyGame
 {
     public class Missile : IGameEffect
     {
-        public Missile(Force enemyForce, double damage, bool isAccurate,Point from, Point to)
+        public Missile(Player enemy, Force enemyForce, double damage, bool isAccurate,Point from, Point to)
         {
+            Enemy = enemy;
             EnemyForce = enemyForce;
             Damage = damage;
             IsAccurate = isAccurate;
@@ -25,6 +26,7 @@ namespace StrategyGame
         public Point CurrentPosition { get; set; }
         private int Direction { get; set; }
         public Force EnemyForce { get; set; }
+        public Player Enemy { get; set; }
         public Texture2D MissileTexture2D { get; set; }
 
 
@@ -50,6 +52,11 @@ namespace StrategyGame
             if ((To.X - CurrentPosition.X)*Direction < 10)
             {
                 EnemyForce.Defend(this);
+                //if enemy force stays in base or is near - 100% splash on base
+                if(EnemyForce.PosX<=100)
+                {
+                    Enemy.PlayerBase.Defend(new MissileBase(Enemy, Damage, IsAccurate, From, To));
+                }
                 return false;
             }
             return true;

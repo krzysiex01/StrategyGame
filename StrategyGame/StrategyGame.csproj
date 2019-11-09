@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Base.cs" />
     <Compile Include="Bot.cs" />
+    <Compile Include="HPBarBase.cs" />
     <Compile Include="LearnInputOutput.cs" />
     <Compile Include="DataCollector.cs" />
     <Compile Include="Explosion.cs" />
@@ -70,8 +71,21 @@
     <Compile Include="Resources\TexturePack.cs" />
     <Compile Include="Resources\UpgradePack.cs" />
     <Compile Include="UserInterface.cs" />
+    <Compile Include="Win.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\AForge.NET\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Controls, Version=2.2.5.0, Culture=neutral, PublicKeyToken=a8ac264d1dc6b9d9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\AForge.NET\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Neuro, Version=2.2.5.0, Culture=neutral, PublicKeyToken=2094f4ea39731d4f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\AForge.NET\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Neuro.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
