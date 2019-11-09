@@ -36,7 +36,6 @@ namespace StrategyGame
             upgradeButton = game.Content.Load<Texture2D>("UpgradeButton");
             upgradeButtonFocused = game.Content.Load<Texture2D>("UpgradeButtonFocused");
             background = game.Content.Load<Texture2D>("desert");
-            smoke = game.Content.Load<Texture2D>("SmokeTrail");
             explosion = game.Content.Load<Texture2D>("vehicleExplosion");
             graphicsDevice = game.GraphicsDevice;
         }
