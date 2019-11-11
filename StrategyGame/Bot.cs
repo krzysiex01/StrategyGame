@@ -22,7 +22,7 @@ namespace StrategyGame
 
         public Bot()
         {
-            ActNetwork = Network.Load("../../../../../NeuralNetwork/bin/Debug/Siec.bin");
+            ActNetwork = Network.Load("Siec.bin");
         }
 
         public int Decision(Player player, Player bot)
