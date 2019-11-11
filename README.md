@@ -12,6 +12,7 @@ How to play: </br>
 How to teach bot: </br>
 -When playing, your moves are being recorded and written to "io.txt" in the game's folder. </br>
 -Your moves always <b>append</b> so if you don't want bot to learn your stupid moves be careful. </br>
--Copy "io.txt" to /NeuralNetwork/bin/Debug </br>
+-Copy "io.txt" to location of NeuralNetwork.exe </br>
 -Run NeuralNetwork.exe and keep pressing enter. Many numbers showing on the screen means everything is ok - wait for neural network to learn. </br>
--You are ready to fight the bot with some new (yours) skills! </br>
+-Copy "Siec.bin" to location of StrategyGame.exe</br>
+-You are ready to fight the bot with some new (yours) skills!</br>
