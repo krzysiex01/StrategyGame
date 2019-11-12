@@ -19,10 +19,11 @@ namespace StrategyGame
     public class Bot
     {
         public Network ActNetwork { get; set; }
-
+        public bool IsStarted { get; set; }
         public Bot()
         {
             ActNetwork = Network.Load("Siec.bin");
+            IsStarted = false;
         }
 
         public int Decision(Player player, Player bot)

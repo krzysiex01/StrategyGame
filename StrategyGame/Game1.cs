@@ -19,11 +19,9 @@ namespace StrategyGame
         public DataCollector data;
         public Bot bot;
         public Win win;
-        public Start start;
         public int Size { get; set; }
         public int Fps { get; set; }
         private int Winner { get; set; } = 0;
-        public bool IfStarted { get; set; } = false;
 
         public Game1()
         {
@@ -49,7 +47,6 @@ namespace StrategyGame
             data = new DataCollector();
             bot = new Bot();
             win = new Win();
-            start = new Start();
             player1 = new Player(Size,1,data);
             player2 = new Player(Size,2,data);
             TexturePack.TexturePackLoad(this);
@@ -106,7 +103,7 @@ namespace StrategyGame
             GameEffectsEngine.Update(gameTime);
 
             //Interface class update
-            userInterface.Update(gameTime, start);
+            userInterface.Update(gameTime, bot);
 
             //Player update logic
             player1.Update(player2,gameTime);
@@ -119,11 +116,8 @@ namespace StrategyGame
             //Win condition
             Winner = win.CheckWin(player1,player2);
 
-            //Start check
-            IfStarted = start.Started;
-
             //Bot decisions logic (comment to play player vs player)
-            if(IfStarted==true)
+            if(bot.IsStarted==true)
             {
                 bot.Proceed(bot.Decision(player1, player2), player1, player2, gameTime);
             }
