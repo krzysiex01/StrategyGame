@@ -31,8 +31,8 @@ namespace StrategyGame
             explosiveForce = game.Content.Load<Texture2D>("wybuchowy");
             rocketForce = game.Content.Load<Texture2D>("rakiety");
             rifleForce = game.Content.Load<Texture2D>("karabin");
-            Button = game.Content.Load<Texture2D>("VechicleButton");
-            ButtonFocused = game.Content.Load<Texture2D>("VechicleButtonFocused");
+            Button = game.Content.Load<Texture2D>("VehicleButton");
+            ButtonFocused = game.Content.Load<Texture2D>("VehicleButtonFocused");
             upgradeButton = game.Content.Load<Texture2D>("UpgradeButton");
             upgradeButtonFocused = game.Content.Load<Texture2D>("UpgradeButtonFocused");
             background = game.Content.Load<Texture2D>("desert");

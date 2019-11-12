@@ -104,7 +104,7 @@
 /processorParam:TextureFormat=Color
 /build:UpgradeButtonFocused.png
 
-#begin VechicleButton.png
+#begin VehicleButton.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -114,9 +114,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:VechicleButton.png
+/build:VehicleButton.png
 
-#begin VechicleButtonFocused.png
+#begin VehicleButtonFocused.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -126,9 +126,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:VechicleButtonFocused.png
+/build:VehicleButtonFocused.png
 
-#begin vechicleExplosion.png
+#begin vehicleExplosion.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -138,7 +138,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:vechicleExplosion.png;vehicleExplosion.png
+/build:vehicleExplosion.png
 
 #begin wybuchowy.png
 /importer:TextureImporter
