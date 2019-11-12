@@ -158,7 +158,7 @@ namespace StrategyGame
             }
         }
 
-        private void ProcessKeyboardInput(GameTime gameTime)
+        private void ProcessKeyboardInput(GameTime gameTime, Start start)
         {
             KeyboardState state = Keyboard.GetState();
 
@@ -193,6 +193,7 @@ namespace StrategyGame
 
             if (state.IsKeyDown(Keys.Enter) & !PrevState.IsKeyDown(Keys.Enter))
             {
+                start.Started = true;
                 if (!UpgradeFocus)
                 {
                     switch ((ButtonID)FocusID)
@@ -291,9 +292,9 @@ namespace StrategyGame
             PrevState = state;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime,Start start)
         {
-            ProcessKeyboardInput(gameTime);
+            ProcessKeyboardInput(gameTime,start);
         }
 
         public void Draw(SpriteBatch spriteBatch, int winner,double hp1, double hp2)

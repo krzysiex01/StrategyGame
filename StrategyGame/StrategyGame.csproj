@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Base.cs" />
     <Compile Include="Bot.cs" />
+    <Compile Include="Start.cs" />
     <Compile Include="HPBarBase.cs" />
     <Compile Include="LearnInputOutput.cs" />
     <Compile Include="DataCollector.cs" />
